@@ -6,7 +6,7 @@ function Meal(){
 
     return (
         <>
-            <Card>
+            <Card className="meal">
                 <Image
                     src="https://www.themealdb.com/images/media/meals/n41ny81608588066.jpg"
                     wrapped

@@ -8,7 +8,7 @@ function IngredientForm() {
             <Form className="form-box">
                 <Form.Field>
                 <label>Enter your ingredients</label>
-                <input className="ingredient-input" placeholder='Enter up to 4 ingredients...' />
+                <input placeholder='Enter up to 4 ingredients...' />
                 </Form.Field>
                 <Button type='submit'>Submit</Button>
             </Form>

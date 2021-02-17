@@ -2,16 +2,19 @@
 // Import libraries/dependencies here 
 import logo from './logo.svg';
 import './App.css';
+import AppHeader from './components/AppHeader'
 import Meal from './components/Meal';
-// Import semantic UI css at APP level
-import 'semantic-ui-css/semantic.min.css'
+import IngredientForm from './components/IngredientForm';
+import MealList from './components/MealList';
+import MealContainer from './containers/MealContainer';
+
 
 
 function App() {
   return (
     <>
-      <p>Hi there!</p>
-      <Meal />
+      <AppHeader />
+      <MealContainer />
     </>);
 }
 

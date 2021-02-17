@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Import semantic UI css at APP level
+import 'semantic-ui-css/semantic.min.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

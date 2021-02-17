@@ -2,10 +2,10 @@ import Meal from './Meal';
 
 function MealList() {
     return (
-    <>
-        <p>Meal List!</p>
+    <section className="meal-list">
         <Meal />
-    </>
+        <Meal />
+    </section>
         );
 }
 

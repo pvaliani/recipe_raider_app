@@ -1,11 +1,14 @@
 import Meal from './Meal';
+import {Card} from 'semantic-ui-react'
 
 function MealList() {
     return (
-    <section className="meal-list">
+    <Card.Group itemsPerRow={3} className="meal-list">
         <Meal />
         <Meal />
-    </section>
+        <Meal />
+        <Meal />
+    </Card.Group>
         );
 }
 

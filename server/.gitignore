@@ -31,4 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
-com.example.codeclan.server.secrets.Key
+
+/server/src/main/java/com/example/codeclan/server/secrets/Key.java

@@ -17,6 +17,5 @@ public class MealAPI {
         Object meals = restTemplate.getForObject(url, Object.class);
 
         return meals;
-
     }
 }

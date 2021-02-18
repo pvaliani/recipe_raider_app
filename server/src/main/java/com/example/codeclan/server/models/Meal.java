@@ -4,7 +4,6 @@ public class Meal {
     private String strMeal;
     private String strMealThumb;
     private String idMeal;
-    private String id;
 
     public Meal(String strMeal, String strMealThumb, String idMeal) {
         this.strMeal = strMeal;
@@ -13,14 +12,6 @@ public class Meal {
     }
 
     public Meal() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getStrMeal() {

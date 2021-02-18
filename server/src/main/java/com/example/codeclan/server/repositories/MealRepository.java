@@ -1,4 +1,4 @@
-package com.example.codeclan.server.secrets;
+package com.example.codeclan.server.repositories;
 
 import com.example.codeclan.server.models.Meal;
 import org.springframework.data.mongodb.repository.MongoRepository;

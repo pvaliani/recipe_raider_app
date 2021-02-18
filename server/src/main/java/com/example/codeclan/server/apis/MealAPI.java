@@ -9,7 +9,7 @@ public class MealAPI {
     Key key;
 
     public Object getMeals(String ingredients) {
-        key = new Key;
+        key = new Key();
         String apiKey = key.getKey();
         String url = "https://themealdb.com/api/json/v2/" + apiKey +"/filter.php?i=" + ingredients;
 

@@ -3,6 +3,7 @@ package com.example.codeclan.server.controllers;
 
 import com.example.codeclan.server.apis.MealAPI;
 import com.example.codeclan.server.models.Meal;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +18,11 @@ public class MealController {
     @Autowired
     MealAPI mealAPI;
 
-//    @GetMapping (value="/api/meals/{ingredients}")
-//    public ResponseEntity<Object> getMealsFromApi(@PathVariable String ingredients) {
-//        Meal[] foundMeals = mealAPI.getMeals(ingredients);
-//        return new ResponseEntity<>(foundMeals, HttpStatus.OK);
-//    }
+    @GetMapping (value="/api/meals/{ingredients}")
+    public ResponseEntity<Object> getMealsFromApi(@PathVariable String ingredients) {
+        JsonNode foundMeals = mealAPI.getMeals(ingredients);
+        return new ResponseEntity<>(foundMeals, HttpStatus.OK);
+    }
 
 //    When a request with ingredients is made - api will return meals,
 //    for each meal create another client call to get the rest of the recipes

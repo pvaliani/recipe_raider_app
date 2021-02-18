@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-/server/src/main/java/com/example/codeclan/server/secrets.*
+/src/main/java/com/example/codeclan/server/secrets.*

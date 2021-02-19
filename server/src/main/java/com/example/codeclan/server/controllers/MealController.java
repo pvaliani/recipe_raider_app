@@ -21,6 +21,20 @@ import java.util.List;
 @RestController
 public class MealController {
 
+    private HashMap<String, List<JsonNode>> cache;
+
+    public MealController(HashMap cache){
+        this.cache = new HashMap<>();
+    }
+
+    public HashMap<String, List<JsonNode>> getCache() {
+        return cache;
+    }
+
+    public void setCache(HashMap<String, List<JsonNode>> cache) {
+        this.cache = cache;
+    }
+
     @Autowired
     MealAPI mealAPI;
 
@@ -28,14 +42,12 @@ public class MealController {
 //  we can go to the browser and request localhost:3000/api/meals/whateverIngredients
 //   then we should be able to return the db result from this path
 
-    HashMap<String, List> cache = new HashMap();
 
     @GetMapping (value="/api/meals/{ingredients}")
-    public ResponseEntity<List<JsonNode>> getMealsFromApi(@PathVariable String ingredients) {
+    public List<JsonNode> getMealsFromApi(@PathVariable String ingredients) {
 
         if(cache.containsKey(ingredients) == true) {
-            System.out.println(cache);
-            return (ResponseEntity<List<JsonNode>>) cache.get(ingredients);
+            return cache.get(ingredients);
         }
 
         JsonNode foundMeals = mealAPI.getMeals(ingredients);
@@ -49,7 +61,7 @@ public class MealController {
 
         cache.put(ingredients, recipeNodes);
 
-        return new ResponseEntity<>(recipeNodes, HttpStatus.OK);
+        return recipeNodes;
     }
 
 //    this is the cache version

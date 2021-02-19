@@ -52,7 +52,6 @@ public class MealAPI {
         JsonNode mealsNode = root.get("meals");
 
 //      Printing mealsNode to confirm expected output
-        System.out.println(mealsNode);
 
 //      Return a list of meal objects
 
@@ -87,11 +86,7 @@ public class MealAPI {
 
         JsonNode mealsNode = root.get("meals");
 
-        System.out.println(mealsNode);
-
         JsonNode recipeNode =  mealsNode.get(0);
-
-        System.out.println(recipeNode);
 
         return recipeNode;
 

@@ -11,13 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-//
+//The API Key config happens in the IDE and should be set locally for each developer
 @Component
 public class MealAPI {
     @Value("${api.key}")
-   String apiKey;
+    String apiKey;
 
-//
+// We create a getMeal fetch method which has a String called url
+// storing the API path we intend to consume
+//  RestTemplate is synchronous
 //List<Meal>
     public JsonNode getMeals(String ingredients) {
 
@@ -28,10 +30,10 @@ public class MealAPI {
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
-//        represents node we are dealing with
+//      Represents the node we are dealing with - initialised to null
         JsonNode root = null;
 
-//      error checking from the fetch
+//      Exception handling from the fetch
 
         try {
            root = mapper.readTree(response.getBody());
@@ -39,18 +41,19 @@ public class MealAPI {
             e.printStackTrace();
         }
 
-//       We are looking down the data structure tree
+//       We are looking down the data structure tree - at this node we are on the { route i.e very
+//       Top level of the consumed API
 
         JsonNode node = root.get(0);
 
-//       mealsNode is the list of meals in an array
+//       mealsNode is the list of meals in an array i.e value of the meals key in the second layer
 
-//        replaced "meals" with 1
         JsonNode mealsNode = root.get("meals");
 
+//      Printing mealsNode to confirm expected output
         System.out.println(mealsNode);
 
-//        return a list of meal objects
+//      Return a list of meal objects
 
         return mealsNode;
 

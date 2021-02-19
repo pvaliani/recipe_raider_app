@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @RestController
 public class MealController {
@@ -25,18 +28,31 @@ public class MealController {
 //   then we should be able to return the db result from this path
 
     @GetMapping (value="/api/meals/{ingredients}")
-    public ResponseEntity<JsonNode> getMealsFromApi(@PathVariable String ingredients) {
+    public ResponseEntity<List<JsonNode>> getMealsFromApi(@PathVariable String ingredients) {
         JsonNode foundMeals = mealAPI.getMeals(ingredients);
-//      First task: loop over foundMeals - could use a forEach loop on JsonNode
+        List<JsonNode> recipeNodes = new ArrayList<>();
+//   First task: loop over foundMeals - could use a forEach loop on JsonNode
         for (JsonNode node:foundMeals) {
-            System.out.println(node.get("idMeal"));
+          JsonNode recipeNode = node.get("idMeal");
+
+          System.out.println(recipeNode);
+
+          int recipeId = recipeNode.asInt();
+
+          System.out.println("recipe id:");
+          System.out.println(recipeId);
+
+          recipeNodes.add(mealAPI.getRecipe(Integer.toString(recipeId)));
         }
-//      Inside the loop: grab the meal id from api
-//      Inside the loop: with the mealId make a call to MealAPI.getRecipe(id)
-//      Then get all of the recipes out of that and convert to Recipe objects
-//      Send back/return list of recipe objects here
-        return new ResponseEntity<>(foundMeals, HttpStatus.OK);
+//   Inside the loop: grab the meal id from api
+//   Inside the loop: with the mealId make a call to MealAPI.getRecipe(id)
+//   Then get all of the recipes out of that and convert to Recipe objects
+//   Send back/return list of recipe objects here
+        return new ResponseEntity<>(recipeNodes, HttpStatus.OK);
     }
+
+
+
 
 //  This getMapping will get the meal by Id - when we run the app locally
 //  we can go to the browser and request localhost:3000/api/meals/whateverIdweWant

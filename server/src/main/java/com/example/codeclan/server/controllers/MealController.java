@@ -30,16 +30,6 @@ public class MealController {
 //      First task: loop over foundMeals - could use a forEach loop on JsonNode
         for (JsonNode node:foundMeals) {
             System.out.println(node.get("idMeal"));
-            JsonNode recipeNode = node.get("idMeal");
-            ObjectMapper mapper = new ObjectMapper();
-
-//            final Object obj = mapper.treeToValue(recipeNode, Object.class);
-//            final String recipeId = mapper.writeValueAsString(obj);
-
-
-            mealAPI.getRecipe(recipeId);
-            System.out.println(mealAPI.getRecipe(recipeId));
-
         }
 //      Inside the loop: grab the meal id from api
 //      Inside the loop: with the mealId make a call to MealAPI.getRecipe(id)

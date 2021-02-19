@@ -89,7 +89,11 @@ public class MealAPI {
 
         System.out.println(mealsNode);
 
-        return mealsNode;
+        JsonNode recipeNode =  mealsNode.get(0);
+
+        System.out.println(recipeNode);
+
+        return recipeNode;
 
 
     }

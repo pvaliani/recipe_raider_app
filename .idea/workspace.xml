@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22c45951-7446-47c9-96ee-9e183404465a" name="Default Changelist" comment="" />
+    <list default="true" id="22c45951-7446-47c9-96ee-9e183404465a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/codeclan/server/controllers/MealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/codeclan/server/controllers/MealController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/codeclan/server/models/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/codeclan/server/models/Recipe.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +29,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="22c45951-7446-47c9-96ee-9e183404465a" name="Default Changelist" comment="" />
@@ -34,5 +39,11 @@
       <updated>1613662477850</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="511" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613752536200">
+      <screen x="0" y="23" width="1440" height="808" />
+    </state>
+    <state x="511" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.808/1440.59.1920.1057@0.23.1440.808" timestamp="1613752536200" />
   </component>
 </project>

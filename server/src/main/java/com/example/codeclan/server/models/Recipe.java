@@ -119,8 +119,10 @@ public class Recipe {
         this.dateModified = dateModified;
     }
 
+    
     public Recipe() {
     }
+
 
     public String getIdMeal() {
         return idMeal;

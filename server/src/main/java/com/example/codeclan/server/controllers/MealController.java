@@ -32,20 +32,16 @@ public class MealController {
         JsonNode foundMeals = mealAPI.getMeals(ingredients);
         List<JsonNode> recipeNodes = new ArrayList<>();
 
-//   First task: loop over foundMeals - could use a forEach loop on JsonNode
-
         for (JsonNode node:foundMeals) {
           JsonNode recipeNode = node.get("idMeal");
           int recipeId = recipeNode.asInt();
           recipeNodes.add(mealAPI.getRecipe(Integer.toString(recipeId)));
         }
 
-//   Inside the loop: grab the meal id from api
-//   Inside the loop: with the mealId make a call to MealAPI.getRecipe(id)
-//   Then get all of the recipes out of that and convert to Recipe objects
-//   Send back/return list of recipe objects here
-
         return new ResponseEntity<>(recipeNodes, HttpStatus.OK);
     }
+
+//    investigate flatmap and var args
+//    hashmap class for Json first fetch
 
 }

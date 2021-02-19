@@ -20,6 +20,7 @@ public class MealAPI {
 // We create a getMeal fetch method which has a String called url
 // storing the API path we intend to consume
 //  RestTemplate is synchronous
+
 //List<Meal>
     public JsonNode getMeals(String ingredients) {
 
@@ -62,6 +63,40 @@ public class MealAPI {
 
     //        get recipeMethod will accept the mealId from above and then call the secondAPI
 //    then the recipe object will be passed back
+
+//    getRecipe is fetching in the same format as the ingredient fetch - for now
+
+    public JsonNode getRecipe(String idMeal){
+
+        String recipeUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+idMeal;
+        System.out.println(recipeUrl);
+        RestTemplate restTemplate = new RestTemplate();
+        ObjectMapper mapper = new ObjectMapper();
+
+        ResponseEntity<String> response = restTemplate.getForEntity(recipeUrl, String.class);
+
+        JsonNode root = null;
+
+        try {
+            root = mapper.readTree(response.getBody());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        JsonNode node = root.get(0);
+
+        JsonNode mealsNode = root.get("meals");
+
+        System.out.println(mealsNode);
+
+        return mealsNode;
+
+
+    }
+
+
+
+
 
 
 }

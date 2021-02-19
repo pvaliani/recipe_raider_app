@@ -18,6 +18,7 @@ class ServerApplicationTests {
 	@Test
 	public void canCallApi(){
 		mealAPI.getMeals("chicken");
+		mealAPI.getRecipe("52772");
 	}
 
 }

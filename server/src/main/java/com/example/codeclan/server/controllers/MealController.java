@@ -3,6 +3,7 @@ package com.example.codeclan.server.controllers;
 
 import com.example.codeclan.server.apis.MealAPI;
 import com.example.codeclan.server.models.Meal;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,11 @@ public class MealController {
             System.out.println(node.get("idMeal"));
             JsonNode recipeNode = node.get("idMeal");
             ObjectMapper mapper = new ObjectMapper();
-            String recipeId = recipeNode.get("data").textValue();
+
+//            final Object obj = mapper.treeToValue(recipeNode, Object.class);
+//            final String recipeId = mapper.writeValueAsString(obj);
+
+
             mealAPI.getRecipe(recipeId);
             System.out.println(mealAPI.getRecipe(recipeId));
 

@@ -6,7 +6,7 @@ import {Card, Icon, Image} from 'semantic-ui-react';
 function Meal({name, area, image}){
 
     return (
-        <>l
+        <>
             <Card className="meal">
                 <Image
                     src={image}
@@ -19,7 +19,7 @@ function Meal({name, area, image}){
                 </Card.Content>
                 <Card.Content extra>
                     <a href="www.google.com">
-                    <Icon name="user" />
+                    <Icon name="food" />
                     Take me to the recipe!
                     </a>
                 </Card.Content>

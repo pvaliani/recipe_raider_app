@@ -5,30 +5,25 @@ import {useState} from 'react';
 // IngredientForm component takes up to 4 ingredients to render a meal
 // IngredientForm component takes in the handleIngredientSubmit as props from the mealContiner
 
-function IngredientForm({handleIngredientSubmit}) {
-
-    // 
-    const [submittedData, setSubmittedData] = useState("");
+function IngredientForm({handleIngredientSubmit, ingredients, setIngredients}) {
 
     const handleInput = (event) => {
-        setSubmittedData(event.target.value);
-        console.log(submittedData);
-
-        return submittedData;
+        setIngredients(event.target.value);
+        console.log(ingredients);
     }
 
     const submitIngredients = (event) => {
         event.preventDefault();
-        handleIngredientSubmit(submittedData);
+        handleIngredientSubmit(ingredients);
     }
     return (
-        <>
-            <Form className="form-box">
+        <> 
+            <Form className="form-box" onSubmit={submitIngredients}>
                 <Form.Field>
                 <label>Enter your ingredients</label>
-                <input placeholder='Enter up to 4 ingredients...' onChange={handleInput} />
+                <input placeholder='Enter up to 4 ingredients...' type="text" onChange={handleInput} />
                 </Form.Field>
-                <Button type='submit' onSubmit={submitIngredients}>Submit</Button>
+                <Button type='submit'>Submit</Button>
             </Form>
 
         </>

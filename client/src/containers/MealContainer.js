@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react';
 
 
 function MealContainer() {
+
 // Create useStates for the meals and ingredients from the search form
 // They will refresh app state in virtual dom upon an alteration to themselves
 const [meals, setMeals] = useState([]);
 const [ingredients, setIngredients] = useState("");
 
-const handleIngredientSubmit = (inputtedIngredients) => {
-    setIngredients(inputtedIngredients);
+// Handler which deals with the ingredients input via the form and the state change as a result of the form submit
+const handleIngredientSubmit = (ingredients) => {
+    getMeals(ingredients);
 }
 
 // This is the fetch which provides meals from the back end API via ingredients which will be input by the user
@@ -26,21 +28,14 @@ const getMeals = (ingredients) => {
         })
 }
 
-// useEffect re-runs the render every time there is a change to ingredients
-useEffect(() => {
-    getMeals(ingredients);
-}, [ingredients]);
-
-
-// Handler which deals with the ingredients input via the form and the state change as a result of the form submit
-
-
 
 // Render - pass handleIngredient submit as props to the ingredient form component
 
 return(
     <>
-        <IngredientForm handleIngredientSubmit={handleIngredientSubmit}/>
+        <IngredientForm handleIngredientSubmit={handleIngredientSubmit}
+                        ingredients={ingredients}
+                        setIngredients={setIngredients}/>
         <MealList />
     </>
 );

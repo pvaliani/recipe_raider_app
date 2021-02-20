@@ -30,13 +30,12 @@ const getMeals = (ingredients) => {
 
 
 // Render - pass handleIngredient submit as props to the ingredient form component
-
 return(
     <>
         <IngredientForm handleIngredientSubmit={handleIngredientSubmit}
                         ingredients={ingredients}
                         setIngredients={setIngredients}/>
-        <MealList />
+        <MealList meals={meals}/>
     </>
 );
 

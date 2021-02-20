@@ -14,7 +14,6 @@ import MealContainer from './containers/MealContainer';
 function App() {
   return (
     <>
-      <AppHeader />
       <MealContainer />
     </>);
 }

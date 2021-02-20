@@ -6,7 +6,7 @@ import {Card, Icon, Image} from 'semantic-ui-react';
 function Meal({name, area, image}){
 
     return (
-        <>
+        <>l
             <Card className="meal">
                 <Image
                     src={image}

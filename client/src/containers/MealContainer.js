@@ -1,6 +1,10 @@
 import MealList from '../components/MealList';
 import IngredientForm from '../components/IngredientForm';
+import Recipe from '../components/Recipe';
+import AppHeader from '../components/AppHeader';
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 
 function MealContainer() {
@@ -31,12 +35,17 @@ const getMeals = (ingredients) => {
 
 // Render - pass handleIngredient submit as props to the ingredient form component
 return(
+    <Router>
     <>
-        <IngredientForm handleIngredientSubmit={handleIngredientSubmit}
-                        ingredients={ingredients}
-                        setIngredients={setIngredients}/>
-        <MealList meals={meals}/>
+    <AppHeader />
+        <Switch>
+            <Route exact path="/"
+                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} /> <MealList meals={meals}/></>}
+                 />
+            <Route path="/recipe" component={Recipe} />
+        </Switch>
     </>
+    </Router>
 );
 
 }

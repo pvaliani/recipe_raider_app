@@ -71,7 +71,7 @@ const recipe = {
       ingredientsList.push(ingredientEntry);
     }
     if((recipe.strMeasure3 !== null && recipe.strMeasure3 !== "") && (recipe.strIngredient3 !== null && recipe.strIngredient3 !== "")) {
-      const ingredientEntry = `${recipe.strMeasure2} ${recipe.strIngredient2}`;
+      const ingredientEntry = `${recipe.strMeasure3} ${recipe.strIngredient3}`;
       ingredientsList.push(ingredientEntry);
     }
     if((recipe.strMeasure4 !== null && recipe.strMeasure4 !== "") && (recipe.strIngredient4 !== null && recipe.strIngredient4 !== "")) {
@@ -159,7 +159,7 @@ const recipe = {
 //  Map the ingredients to an ingredientsList and return the result as a list item in JSX to a component prop at the bottom
 
   const ingredientsJSX = ingredientsList.map(ingredient => {
-      return (<li>{ingredient}</li>);
+      return (<List.Item>{ingredient}</List.Item>);
   })
 
 function Recipe() {
@@ -178,18 +178,14 @@ function Recipe() {
       <Container text>
         {/* <Embed id="1IszT_guI08" placeholder="" source="youtube"/> */}
         <Header as='h2'>{recipe.strMeal}</Header>
-        <p>{recipe.strInstructions}</p>
-        <p>{recipe.strMeasure1} {recipe.strIngredient1}</p>
-        <ul>
-          {ingredientsJSX}
-        </ul>
-        
-
+        <Image src={recipe.strMealThumb} size='medium'/>
+            <p>{recipe.strInstructions}</p>
+            <List>
+              {ingredientsJSX}
+            </List>
       </Container>
       
 
-   
- 
       </>
 
     )

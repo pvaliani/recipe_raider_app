@@ -21,7 +21,8 @@ function Meal({meal}){
                     <Card.Description>{meal.strArea}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                <Modal onClose={() => setOpen(false)}
+                <Modal closeIcon
+                        onClose={() => setOpen(false)}
                         onOpen={() => setOpen(true)}
                         open={open} trigger={
                     <a>
@@ -33,9 +34,9 @@ function Meal({meal}){
                 <Modal.Content>
                     <Recipe recipe={meal}/>
                 </Modal.Content>
-                <Button color='gray' onClick={() => setOpen(false)}>
+                {/* <Button color='gray' onClick={() => setOpen(false)}>
                     <Icon name="close"/>
-                </Button>
+                </Button> */}
                 </Modal>
                 </Card.Content>
             </Card>

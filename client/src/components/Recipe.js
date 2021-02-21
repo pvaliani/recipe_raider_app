@@ -183,11 +183,13 @@ function Recipe({recipe}) {
       <>
       <Container text>
         {/* <Embed id="1IszT_guI08" placeholder="" source="youtube"/> */}
-        <Header as='h2'>{recipe.strMeal}</Header>
-
+        <Header as='h2' textAlign="center">{recipe.strMeal}  </Header>
+          <Image src={recipe.strMealThumb}  size="medium" centered rounded/>
+            <h3>Ingredients</h3>
             <List>
               {ingredientsJSX}
             </List>
+            <h3>Method</h3>
             <p>{recipe.strInstructions}</p>
       </Container>
       

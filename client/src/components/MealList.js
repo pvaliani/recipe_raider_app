@@ -9,14 +9,14 @@ function MealList({meals}) {
     // we seek from the stored back end recipe API. We render the results in MealList
     const displayMeals = meals.map(meal => {
         return <Meal 
-                image={meal.strMealThumb}
-                name={meal.strMeal}
-                area={meal.strArea}/>
+                meal={meal}/>
     })
     return (
+  <section className="recipe-list">
     <Card.Group itemsPerRow={3} className="meal-list">
       {displayMeals}
     </Card.Group>
+  </section>
         );
 }
 

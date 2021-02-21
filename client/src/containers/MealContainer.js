@@ -13,6 +13,7 @@ function MealContainer() {
 // They will refresh app state in virtual dom upon an alteration to themselves
 const [meals, setMeals] = useState([]);
 const [ingredients, setIngredients] = useState("");
+// const [testRecipe, setTestRecipe] = useState("");
 
 // Handler which deals with the ingredients input via the form and the state change as a result of the form submit
 const handleIngredientSubmit = (ingredients) => {
@@ -40,9 +41,10 @@ return(
     <AppHeader />
         <Switch>
             <Route exact path="/"
-                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} /> <MealList meals={meals}/></>}
+                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} /> <MealList meals={meals}/> </>}
                  />
-            <Route path="/recipe" component={Recipe} />
+            <Route path="/recipe" 
+                render={() => <Recipe meals={meals} />}/>
         </Switch>
     </>
     </Router>

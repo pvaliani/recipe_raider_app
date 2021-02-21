@@ -16,7 +16,10 @@ code {
   width: 400px;
 }
 
-.recipe-card {
-  width: 100%;
+.recipe-list{
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 

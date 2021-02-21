@@ -58,6 +58,7 @@ const recipe = {
   //If the quantity is not null or blank, and the ingredient is not null or blank, combine the two together in a string and add them to the array.
   //Loop over all the elements in the array and create a JSX element for them
   //Insert this into the return
+
   let ingredientsList = []
 
   const displayIngredients = () => {
@@ -145,13 +146,17 @@ const recipe = {
       ingredientsList.push(ingredientEntry);
     }
     
+    // console log the ingredients list to check it in the browser
     console.log(ingredientsList);
 
     return ingredientsList;
 
   }
 
+//  Call the displayIngredients method 
   displayIngredients();
+
+//  Map the ingredients to an ingredientsList and return the result as a list item in JSX to a component prop at the bottom
 
   const ingredientsJSX = ingredientsList.map(ingredient => {
       return (<li>{ingredient}</li>);

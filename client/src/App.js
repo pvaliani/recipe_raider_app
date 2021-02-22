@@ -7,6 +7,7 @@ import Meal from './components/Meal';
 import IngredientForm from './components/IngredientForm';
 import MealList from './components/MealList';
 import MealContainer from './containers/MealContainer';
+import CocktailContainer from './containers/CocktailContainer';
 
 
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <MealContainer />
+      <CocktailContainer />
     </>);
 }
 

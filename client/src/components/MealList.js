@@ -1,4 +1,5 @@
 import Meal from './Meal';
+<<<<<<< HEAD
 import {Card, Container} from 'semantic-ui-react'
 
 function MealList({meals, ingredients}) {
@@ -13,10 +14,16 @@ function MealList({meals, ingredients}) {
     //   );
     // }
     
+=======
+import {Card} from 'semantic-ui-react'
+function MealList({meals}) {
+    // return no cards if there are no meals. Otherwise....
+    if (!meals) return null;
+>>>>>>> main
     // Map the meals in a function called displayMeals which returns the API key/value pairs
     // we seek from the stored back end recipe API. We render the results in MealList
     const displayMeals = meals.map(meal => {
-        return <Meal 
+        return <Meal
                 meal={meal}/>
     })
     return (
@@ -27,7 +34,10 @@ function MealList({meals, ingredients}) {
   </section>
         );
 }
+<<<<<<< HEAD
 
 // error message code
 
+=======
+>>>>>>> main
 export default MealList;

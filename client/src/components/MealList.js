@@ -6,7 +6,7 @@ function MealList({meals, ingredients, prevSearch}) {
     if (!meals) return null;
 
     // Conditional logic if not results - ped, laura 
-    if (meals && meals.length === 0 && prevSearch !== "") {
+    if (meals && meals.length === 0) {
       return (
           <Container text>
             <p>No recipes matching {prevSearch}</p>

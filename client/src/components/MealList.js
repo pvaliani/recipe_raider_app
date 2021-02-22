@@ -5,7 +5,7 @@ function MealList({meals, ingredients}) {
     // return no cards if there are no meals. Otherwise....
     if (!meals) return null;
 
-    // Conditional logic if not results - ped 
+    // Conditional logic if not results - ped, laura 
     // if (meals && meals.length === 0 ) {
     //   return (
     //       <Container text>

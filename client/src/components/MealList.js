@@ -6,13 +6,13 @@ function MealList({meals, ingredients, prevSearch}) {
     if (!meals) return null;
 
     // Conditional logic if not results - ped, laura 
-    if (meals && meals.length === 0) {
-      return (
-          <Container text>
-            <p>No recipes matching {prevSearch}</p>
-          </Container>
-      );
-    }
+    // if (meals && meals.length === 0) {
+    //   return (
+    //       <Container text>
+    //         <p>No recipes matching {prevSearch}</p>
+    //       </Container>
+    //   );
+    // }
     
     // Map the meals in a function called displayMeals which returns the API key/value pairs
     // we seek from the stored back end recipe API. We render the results in MealList

@@ -55,7 +55,7 @@ const formatInput = (userInput) => {
 return(
     <Router>
     <>
-    <AppHeader />
+    <AppHeader/>
         <Switch>
             <Route exact path="/"
                  render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} formatInput={formatInput} prevSearch ={prevSearch} setPrevSearch ={setPrevSearch} /> <MealList meals={meals} ingredients={ingredients} prevSearch ={prevSearch}/> </>}

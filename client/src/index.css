@@ -13,9 +13,10 @@ code {
 }
 
 .form-box {
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   width: 400px;
-  padding-left: 100px;
+  padding-top: 30px;
   padding-bottom: 50px;
   align-items: center;
 }
@@ -26,4 +27,10 @@ code {
   padding-left: 100px;
   padding-right: 100px;
 }
+
+.recipeHeader {
+
+  padding-top: 50px !important;
+}
+
 

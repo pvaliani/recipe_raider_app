@@ -93,6 +93,71 @@ public class MealAPI {
 
     }
 
+    public JsonNode getCocktails(String ingredients) {
+
+        String url = "https://thecocktaildb.com/api/json/v2/" + apiKey + "/filter.php?i=" + ingredients;
+        System.out.println(url);
+        RestTemplate restTemplate = new RestTemplate();
+        ObjectMapper mapper = new ObjectMapper();
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+//      Represents the node we are dealing with - initialised to null
+        JsonNode root = null;
+
+//      Exception handling from the fetch
+
+        try {
+            root = mapper.readTree(response.getBody());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+//       We are looking down the data structure tree - at this node we are on the { route i.e very
+//       Top level of the consumed API
+
+        JsonNode node = root.get(0);
+
+//       mealsNode is the list of meals in an array i.e value of the meals key in the second layer
+
+        JsonNode cocktailsNode = root.get("drinks");
+
+//      Printing mealsNode to confirm expected output
+
+//      Return a list of meal objects
+
+        return cocktailsNode;
+
+    }
+
+    public JsonNode getCocktail(String idCocktail){
+
+        String drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+idCocktail;
+        System.out.println(drinkUrl);
+        RestTemplate restTemplate = new RestTemplate();
+        ObjectMapper mapper = new ObjectMapper();
+
+        ResponseEntity<String> response = restTemplate.getForEntity(drinkUrl, String.class);
+
+        JsonNode root = null;
+
+        try {
+            root = mapper.readTree(response.getBody());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        JsonNode node = root.get(0);
+
+        JsonNode cocktailNode = root.get("drinks");
+
+        JsonNode cocktailRecipeNode =  cocktailNode.get(0);
+
+        return cocktailRecipeNode;
+
+
+    }
+
 
 
 

@@ -22,9 +22,11 @@ import java.util.List;
 public class MealController {
 
     private HashMap<String, List<JsonNode>> cache;
+    private HashMap<String, List<JsonNode>> cocktailCache;
 
-    public MealController(HashMap cache){
+    public MealController(HashMap cache, HashMap cocktailCache){
         this.cache = new HashMap<>();
+        this.cocktailCache = new HashMap<>();
     }
 
     public HashMap<String, List<JsonNode>> getCache() {
@@ -33,6 +35,15 @@ public class MealController {
 
     public void setCache(HashMap<String, List<JsonNode>> cache) {
         this.cache = cache;
+    }
+
+    public HashMap<String, List<JsonNode>> getCocktailCache() {
+        return cocktailCache;
+    }
+
+
+    public void setCocktailCache(HashMap<String, List<JsonNode>> cocktailCache) {
+        this.cocktailCache = cocktailCache;
     }
 
     @Autowired
@@ -64,11 +75,38 @@ public class MealController {
         return recipeNodes;
     }
 
+//    COCKTAILS START HERE!
+    @GetMapping (value="/api/cocktails/{ingredients}")
+    public List<JsonNode> getCocktailsFromApi(@PathVariable String ingredients) {
+
+        if(cocktailCache.containsKey(ingredients) == true) {
+            return cocktailCache.get(ingredients);
+        }
+
+        JsonNode foundCocktails = mealAPI.getCocktails(ingredients);
+        List<JsonNode> cocktailRecipeNodes = new ArrayList<>();
+
+        for (JsonNode node:foundCocktails) {
+            JsonNode cocktailNode = node.get("idDrink");
+            int cocktailId = cocktailNode.asInt();
+            cocktailRecipeNodes.add(mealAPI.getCocktail(Integer.toString(cocktailId)));
+        }
+
+        cocktailCache.put(ingredients, cocktailRecipeNodes);
+
+        return cocktailRecipeNodes;
+    }
+
 //    this is the cache version
     // Hola!
 
 
-//    investigate flatmap and var args
-//    hashmap class for Json first fetch
+//     THIS IS WHERE THE COCKTAIL API INFO STARTS!!!!
+
+
+
+
+
+
 
 }

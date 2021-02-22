@@ -13,6 +13,12 @@ function Recipe({recipe}) {
     let ingredientsList = []
   
     const displayIngredients = () => {
+      // Object.keys(recipe)
+      // let text = recipe["strMeasure1"] 
+      // console.log(text);
+      // delete recipe["strMeasure1"]
+      // console.log(recipe);
+
       if((recipe.strMeasure1 !== null && recipe.strMeasure1 !== "") && (recipe.strIngredient1 !== null && recipe.strIngredient1 !== "")) {
         const ingredientEntry = `${recipe.strMeasure1} ${recipe.strIngredient1}`;
         ingredientsList.push(ingredientEntry);

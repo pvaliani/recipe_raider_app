@@ -33,6 +33,21 @@ const getMeals = (ingredients) => {
         })
 }
 
+// Convert string to lower case
+// Convert string to array with comma delimiter - .split(“,”)
+// For each element in the array, get rid of leading and trailing white space - .trim()
+// For each element in the array, replace any space with an underscore - .replace(“ “, “_”)
+// Convert the array back to a string
+const formatInput = (userInput) => {
+    const lowerCase = userInput.toLowerCase();
+    const inputArray = lowerCase.split(",");
+    const formattedArray = inputArray.map(i => i.trim());
+    const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
+    const formattedString = arrayWithUnderscores.toString();
+
+    return formattedString;
+}
+
 
 // Render - pass handleIngredient submit as props to the ingredient form component
 return(
@@ -41,7 +56,7 @@ return(
     <AppHeader />
         <Switch>
             <Route exact path="/"
-                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} /> <MealList meals={meals}/> </>}
+                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} formatInput={formatInput} /> <MealList meals={meals} ingredients={ingredients}/> </>}
                  />
             <Route path="/recipe" 
                 render={() => <Recipe meals={meals} />}/>

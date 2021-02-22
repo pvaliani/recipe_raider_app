@@ -29,14 +29,10 @@ function Meal({meal}){
                         <Icon name="food" />
                         Show recipe
                     </a>}
-                    // positionFixed 
                 >
                 <Modal.Content>
                     <Recipe recipe={meal}/>
                 </Modal.Content>
-                {/* <Button color='gray' onClick={() => setOpen(false)}>
-                    <Icon name="close"/>
-                </Button> */}
                 </Modal>
                 </Card.Content>
             </Card>

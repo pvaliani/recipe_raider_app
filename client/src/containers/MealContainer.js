@@ -33,6 +33,7 @@ const getMeals = (ingredients) => {
         })
 }
 
+// Pseudocode to format user input
 // Convert string to lower case
 // Convert string to array with comma delimiter - .split(“,”)
 // For each element in the array, get rid of leading and trailing white space - .trim()

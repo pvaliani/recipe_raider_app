@@ -13,7 +13,11 @@ code {
 }
 
 .form-box {
+  text-align: center;
   width: 400px;
+  padding-left: 100px;
+  padding-bottom: 50px;
+  align-items: center;
 }
 
 .recipe-list{

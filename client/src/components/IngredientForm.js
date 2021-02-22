@@ -1,11 +1,11 @@
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Input } from 'semantic-ui-react'
 import {useState} from 'react';
 
 
 // IngredientForm component takes up to 4 ingredients to render a meal
 // IngredientForm component takes in the handleIngredientSubmit as props from the mealContiner
 
-function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, formatInput}) {
+function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, formatInput, setPrevSearch}) {
 
     const handleInput = (event) => {
         const formattedInput = formatInput(event.target.value);
@@ -17,16 +17,18 @@ function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, fo
     const submitIngredients = (event) => {
         event.preventDefault();
         handleIngredientSubmit(ingredients);
+        setPrevSearch(ingredients);
     }
     return (
         <> 
+    
             <Form className="form-box" onSubmit={submitIngredients}>
-                <Form.Field>
-                <label>Enter your ingredients</label>
-                <input placeholder='Enter up to 4 ingredients...' type="text" onChange={handleInput} />
-                </Form.Field>
-                <Button type='submit'>Submit</Button>
-            </Form>
+                             
+                    <Form.Field>
+                    <label>Enter your ingredients</label>
+                    <Input action='Search' placeholder='Enter up to 4 ingredients...' onChange={handleInput}/>
+                    </Form.Field>              
+           </Form>
 
         </>
     );

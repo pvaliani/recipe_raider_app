@@ -1,4 +1,4 @@
-import {Container, Header, Image, List, Embed} from 'semantic-ui-react';
+import {Container, Header, Image, List, Embed, Grid} from 'semantic-ui-react';
 
 function Recipe({recipe}) {
   if (!recipe) return null;
@@ -118,11 +118,17 @@ function Recipe({recipe}) {
       <>
       <Container text>
         <Header as='h2' textAlign="center">{recipe.strMeal}  </Header>
-          <Image src={recipe.strMealThumb}  size="medium" centered rounded/>
+        <Grid>       
+          <Grid.Column width={8}>
             <h3>Ingredients</h3>
-            <List>
+          <List>
               {ingredientsJSX}
-            </List>
+          </List>
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <Image src={recipe.strMealThumb}  size="large" rounded/>
+          </Grid.Column>
+        </Grid>
             <h3>Method</h3>
             <p>{recipe.strInstructions}</p>
       </Container>

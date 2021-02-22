@@ -1,5 +1,5 @@
 import Cocktail from './Cocktail';
-import {Card, Container} from 'semantic-ui-react'
+import {Card, Container, Pagination} from 'semantic-ui-react'
 
 function CocktailList({cocktails, ingredients, prevSearch}) {
     // return no cards if there are no cocktails. Otherwise....
@@ -23,6 +23,7 @@ function CocktailList({cocktails, ingredients, prevSearch}) {
     return (
   <section className="recipe-list">
     <Card.Group itemsPerRow={3} className="meal-list">
+    <Pagination defaultActivePage={1} totalPages={10} cocktails={displayCocktails}/>
       {displayCocktails}
     </Card.Group>
   </section>

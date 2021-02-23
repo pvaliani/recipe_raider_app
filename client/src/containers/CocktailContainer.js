@@ -14,7 +14,8 @@ function CocktailContainer() {
 const [cocktails, setCocktails] = useState([]);
 const [ingredients, setIngredients] = useState("");
 const [prevSearch, setPrevSearch] = useState("");
-// const [testRecipe, setTestRecipe] = useState("");
+const [someCocktails, setSomeCocktails] = useState([]);
+const [pageCount, setPageCount] = useState("");
 
 // Handler which deals with the ingredients input via the form and the state change as a result of the form submit
 const handleIngredientSubmit = (ingredients) => {
@@ -31,6 +32,8 @@ const getCocktails = (ingredients) => {
         .then(data => {
             console.log(data);
             setCocktails(data);
+            setSomeCocktails(data.slice(0,6));
+            setPageCount(Math.ceil(data.length/6));
         })
 }
 
@@ -50,6 +53,14 @@ const formatInput = (userInput) => {
     return formattedString;
 }
 
+// Function to handle page change in pagination
+const onPageChange = (event, pageInfo) => {
+    console.log(pageInfo);
+    const { activePage } = pageInfo;
+    const startIndex = (activePage - 1)*7;
+    setSomeCocktails(cocktails.slice(startIndex, startIndex + 6)); 
+}
+
 
 // Render - pass handleIngredient submit as props to the ingredient form component
 return(
@@ -57,10 +68,23 @@ return(
     <>
         <Switch>
             <Route exact path="/cocktails"
-                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} formatInput={formatInput} prevSearch ={prevSearch} setPrevSearch ={setPrevSearch} /> <CocktailList cocktails={cocktails} ingredients={ingredients} prevSearch ={prevSearch}/> </>}
+                 render={() => { return (
+                 <><IngredientForm 
+                 handleIngredientSubmit={handleIngredientSubmit} 
+                 ingredients={ingredients} 
+                 setIngredients={setIngredients} 
+                 formatInput={formatInput} 
+                 prevSearch ={prevSearch} 
+                 setPrevSearch ={setPrevSearch} /> 
+                 
+                 <CocktailList cocktails={someCocktails} 
+                 ingredients={ingredients} 
+                 prevSearch={prevSearch}
+                 onPageChange={onPageChange}
+                 pageCount={pageCount}/> </>)}}
                  />
             <Route path="/cocktailrecipe" 
-                render={() => <CocktailRecipe cocktails={cocktails} />}/>
+                render={() => <CocktailRecipe cocktails={someCocktails} />}/>
         </Switch>
     </>
     </Router>

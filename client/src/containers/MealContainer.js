@@ -17,6 +17,7 @@ const [ingredients, setIngredients] = useState("");
 const [prevSearch, setPrevSearch] = useState("");
 const [someMeals, setSomeMeals] = useState([]);
 const [pageCount, setPageCount] = useState("");
+const [loaded, setLoaded] = useState(false);
 
 
 // const [testRecipe, setTestRecipe] = useState("");
@@ -24,12 +25,14 @@ const [pageCount, setPageCount] = useState("");
 // Handler which deals with the ingredients input via the form and the state change as a result of the form submit
 const handleIngredientSubmit = (ingredients) => {
     getMeals(ingredients);
+    setPrevSearch(ingredients);
 }
 
 // This is the fetch which provides meals from the back end API via ingredients which will be input by the user
 const getMeals = (ingredients) => {
     const url = "http://localhost:8080/api/meals/"+ingredients;
     console.log("Url: " + url);
+    setLoaded(false);
 
     fetch(url)
         .then(res => res.json())
@@ -38,7 +41,9 @@ const getMeals = (ingredients) => {
             setAllMeals(data);
             setSomeMeals(data.slice(0, 6))
             setPageCount(Math.ceil(data.length/7));
+            setLoaded(true);
         })
+
 }
 
 // Pseudocode to format user input for the API
@@ -93,7 +98,8 @@ return(
                     ingredients={ingredients} 
                     prevSearch ={prevSearch} 
                     onPageChange={onPageChange} 
-                    pageCount={pageCount} /> </>)
+                    pageCount={pageCount} 
+                    loaded={loaded}/> </>)
                  }}
                  />
             <Route path="/recipe" 

@@ -32,7 +32,7 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
         }
     }
 
-    // We create a variable to call pagination at the end return statement
+    // We create a variable to call pagination at the end render return statement
 
     const pagination = displayPagination();
 
@@ -44,12 +44,10 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
     <Card.Group itemsPerRow={3} className="meal-list">
       {displayCocktails}
     </Card.Group>
-    
     {pagination}
   </section>
         );
 }
 
-// error message code
 
 export default CocktailList;

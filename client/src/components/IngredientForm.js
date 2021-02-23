@@ -5,7 +5,7 @@ import {useState} from 'react';
 // IngredientForm component takes up to 4 ingredients to render a meal
 // IngredientForm component takes in the handleIngredientSubmit as props from the mealContiner
 
-function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, formatInput, setPrevSearch}) {
+function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, formatInput}) {
 
     const handleInput = (event) => {
         const formattedInput = formatInput(event.target.value);
@@ -17,7 +17,7 @@ function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, fo
     const submitIngredients = (event) => {
         event.preventDefault();
         handleIngredientSubmit(ingredients);
-        setPrevSearch(ingredients);
+    
     }
     return (
         <> 

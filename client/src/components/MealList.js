@@ -7,7 +7,7 @@ function MealList({meals, ingredients, prevSearch, onPageChange, pageCount}) {
     // return no cards if there are no meals. Otherwise....
     if (!meals) return null;
 
-    // Conditional logic if not results - ped, laura 
+    // logic for only returning valid searches
     // if (meals && meals.length === 0) {
     //   return (
     //       <Container text>

@@ -37,7 +37,7 @@ const getMeals = (ingredients) => {
             console.log(data);
             setAllMeals(data);
             setSomeMeals(data.slice(0, 6))
-            setPageCount(Math.ceil(data.length/6));
+            setPageCount(Math.ceil(data.length/7));
         })
 }
 

@@ -6,13 +6,13 @@ import { useState, useEffect } from 'react';
 function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, loaded, formatPrevSearch}) {
     // return no cards if there are no meals. Otherwise....
     if (!meals) return null;
+    const formattedPrevSeach = formatPrevSearch(prevSearch);
 
     // logic for only returning valid searches
     if (meals && meals.length === 0 && prevSearch !== "" && loaded===true) {
-      formatPrevSearch(prevSearch);
       return (
           <Container text>
-            <p>No recipes matching {prevSearch}</p>
+            <p>No recipes matching {formattedPrevSeach}</p>
           </Container>
       );
     }

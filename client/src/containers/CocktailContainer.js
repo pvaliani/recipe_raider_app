@@ -33,7 +33,7 @@ const getCocktails = (ingredients) => {
             console.log(data);
             setCocktails(data);
             setSomeCocktails(data.slice(0,6));
-            setPageCount(Math.ceil(data.length/6));
+            setPageCount(Math.ceil(data.length/7));
         })
 }
 

@@ -20,12 +20,32 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
         return <Cocktail
                 cocktail={cocktail}/>
     })
+
+    // Pagination is displayed only if there are cocktails from the fetch i.e cocktails.length > 0
+
+    const displayPagination = () => {
+        if (cocktails.length === 0){
+            return
+        }
+        else {
+            return (<Pagination defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />)
+        }
+    }
+
+    // We create a variable to call pagination at the end return statement
+
+    const pagination = displayPagination();
+
+
+// we call
+
     return (
   <section className="recipe-list">
     <Card.Group itemsPerRow={3} className="meal-list">
       {displayCocktails}
     </Card.Group>
-    <Pagination defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />
+    
+    {pagination}
   </section>
         );
 }

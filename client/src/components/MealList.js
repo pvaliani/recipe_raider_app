@@ -24,19 +24,35 @@ function MealList({meals, ingredients, prevSearch, onPageChange, pageCount}) {
                 key={meal.idMeal}
                 meal={meal}/>
     })
+
+
     
     console.log(pageCount);
+
+// Pagination is displayed only if there are meals  from the fetch i.e cocktails.length > 0
+    const displayPagination = () => {
+        if (meals.length === 0){
+            return
+        }
+        else {
+            return (<Pagination defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />)
+        }
+    }
+
+
+    // create a variable to call the pagination method which we will return at the render
+
+    const pagination = displayPagination();
     
     return (
   <section className="recipe-list">
     <Card.Group itemsPerRow={3} className="meal-list">
       {displayMeals}
     </Card.Group>
-    <Pagination defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />
+    {pagination}
   </section>
         );
 }
 
-// error message code
 
 export default MealList;

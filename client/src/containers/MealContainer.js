@@ -1,7 +1,7 @@
 import MealList from '../components/MealList';
 import IngredientForm from '../components/IngredientForm';
 import Recipe from '../components/Recipe';
-import MealAppHeader from '../components/AppHeader';
+import MealAppHeader from '../components/MealAppHeader';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';

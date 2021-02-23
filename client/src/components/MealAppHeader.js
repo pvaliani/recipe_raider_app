@@ -7,7 +7,7 @@ function MealAppHeader(){
     return(
         <>
          <Header className="recipeHeader" textAlign="center"  as='h2'>
-          <Image circular src={MealLogo} className='logo' /> 
+          <Image src={MealLogo} className='logo' /> 
         </Header>
         </>
     )

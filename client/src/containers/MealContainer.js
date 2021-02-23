@@ -15,6 +15,9 @@ function MealContainer() {
 const [meals, setMeals] = useState([]);
 const [ingredients, setIngredients] = useState("");
 const [prevSearch, setPrevSearch] = useState("");
+const [someMeals, setSomeMeals] = useState([]);
+
+
 // const [testRecipe, setTestRecipe] = useState("");
 
 // Handler which deals with the ingredients input via the form and the state change as a result of the form submit
@@ -54,20 +57,7 @@ const formatInput = (userInput) => {
 // Pagination code --------- 
 
 
-// const [data, setData] = useState([]);
-// const [activePage, setActivePage] = useState(1);
-// const [apiUrl, setApiUrl] = useState("http://localhost:8080/api/meals/"+ingredients);
 
-// useEffect(() => {
-//     axios.get(apiUrl).then(response => {
-//     setData(response.data.results);
-//   });
-// }, [apiUrl]);
-
-// const onChange = (e, pageInfo) => {
-//     setActivePage(pageInfo.activePage);
-//   setApiUrl("http://localhost:8080/api/meals/"+ingredients + activePage.toString());
-// };
 
 // End of pagination code ------- 
 
@@ -81,7 +71,7 @@ return(
     <AppHeader/>
         <Switch>
             <Route exact path="/"
-                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} formatInput={formatInput} prevSearch ={prevSearch} setPrevSearch ={setPrevSearch} /> <MealList meals={meals} ingredients={ingredients} prevSearch ={prevSearch}  /> </>}
+                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} formatInput={formatInput} prevSearch ={prevSearch} setPrevSearch ={setPrevSearch} /> <MealList meals={meals} ingredients={ingredients} prevSearch ={prevSearch} onPageChange={onPageChange}  /> </>}
                  />
             <Route path="/recipe" 
                 render={() => <Recipe meals={meals} />}/>

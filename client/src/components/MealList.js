@@ -27,7 +27,7 @@ function MealList({meals, ingredients, prevSearch}) {
     
     return (
   <section className="recipe-list">
-     <Pagination defaultActivePage={1} totalPages={10} />
+     <Pagination defaultActivePage={1} totalPages={10} onPageChange={} />
     <Card.Group itemsPerRow={3} className="meal-list">
       {displayMeals}
     </Card.Group>

@@ -1,5 +1,5 @@
 import CocktailList from '../components/CocktailList';
-import IngredientForm from '../components/IngredientForm';
+import CocktailIngredientForm from '../components/CocktailIngredientForm';
 import CocktailRecipe from '../components/CocktailRecipe';
 import AppHeader from '../components/AppHeader';
 import { useState, useEffect } from 'react';
@@ -69,7 +69,7 @@ return(
         <Switch>
             <Route exact path="/cocktails"
                  render={() => { return (
-                 <><IngredientForm 
+                 <><CocktailIngredientForm 
                  handleIngredientSubmit={handleIngredientSubmit} 
                  ingredients={ingredients} 
                  setIngredients={setIngredients} 

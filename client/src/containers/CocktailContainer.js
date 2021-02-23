@@ -16,16 +16,19 @@ const [ingredients, setIngredients] = useState("");
 const [prevSearch, setPrevSearch] = useState("");
 const [someCocktails, setSomeCocktails] = useState([]);
 const [pageCount, setPageCount] = useState("");
+const [loaded, setLoaded] = useState(false);
 
 // Handler which deals with the ingredients input via the form and the state change as a result of the form submit
 const handleIngredientSubmit = (ingredients) => {
     getCocktails(ingredients);
+    setPrevSearch(ingredients);
 }
 
 // This is the fetch which provides cocktails from the back end API via ingredients which will be input by the user
 const getCocktails = (ingredients) => {
     const url = "http://localhost:8080/api/cocktails/"+ingredients;
     console.log("Url: " + url);
+    setLoaded(false);
 
     fetch(url)
         .then(res => res.json())
@@ -34,6 +37,8 @@ const getCocktails = (ingredients) => {
             setCocktails(data);
             setSomeCocktails(data.slice(0,6));
             setPageCount(Math.ceil(data.length/7));
+            setLoaded(true);
+            
         })
 }
 
@@ -52,6 +57,19 @@ const formatInput = (userInput) => {
 
     return formattedString;
 }
+
+const formatPrevSearch = (text) => {
+
+    const searchToArray = text.split(',');
+    const formattedArray = searchToArray.map(text => text.replace('_'," "));
+    const formattedText = formattedArray.toString();
+    return formattedText;
+
+}
+
+
+
+
 
 // Function to handle page change in pagination
 const onPageChange = (event, pageInfo) => {
@@ -81,7 +99,9 @@ return(
                  ingredients={ingredients} 
                  prevSearch={prevSearch}
                  onPageChange={onPageChange}
-                 pageCount={pageCount}/> </>)}}
+                 pageCount={pageCount}
+                 loaded={loaded}
+                 formatPrevSearch={formatPrevSearch}/> </>)}}
                  />
             <Route path="/cocktailrecipe" 
                 render={() => <CocktailRecipe cocktails={someCocktails} />}/>

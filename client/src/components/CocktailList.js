@@ -1,18 +1,19 @@
 import Cocktail from './Cocktail';
 import {Card, Container, Pagination} from 'semantic-ui-react'
 
-function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCount}) {
+function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCount, formatPrevSearch, loaded}) {
     // return no cards if there are no cocktails. Otherwise....
     if (!cocktails) return null;
 
-    // Conditional logic if not results - ped, laura 
-    // if (cocktails && cocktails.length === 0) {
-    //   return (
-    //       <Container text>
-    //         <p>No recipes matching {prevSearch}</p>
-    //       </Container>
-    //   );
-    // }
+     // logic for only returning valid searches
+     if (cocktails && cocktails.length === 0 && prevSearch !== "" && loaded===true) {
+      formatPrevSearch(prevSearch);
+      return (
+          <Container text>
+            <p>No recipes matching {prevSearch}</p>
+          </Container>
+      );
+    }
     
     // Map the cocktails in a function called displayCocktails which returns the API key/value pairs
     // we seek from the stored back end recipe API. We render the results in MealList

@@ -62,6 +62,15 @@ const formatInput = (userInput) => {
     return formattedString;
 }
 
+const formatPrevSearch = (text) => {
+
+    const searchToArray = text.split(',');
+    const formattedArray = searchToArray.map(text => text.replace('_'," "));
+    const formattedText = formattedArray.toString();
+    return formattedText;
+
+}
+
 // Pagination code --------- 
 
 const onPageChange = (event, pageInfo) => {
@@ -99,7 +108,8 @@ return(
                     prevSearch ={prevSearch} 
                     onPageChange={onPageChange} 
                     pageCount={pageCount} 
-                    loaded={loaded}/> </>)
+                    loaded={loaded}
+                    formatPrevSearch={formatPrevSearch}/> </>)
                  }}
                  />
             <Route path="/recipe" 

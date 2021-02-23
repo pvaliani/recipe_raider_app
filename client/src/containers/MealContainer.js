@@ -68,7 +68,18 @@ const formatPrevSearch = (text) => {
     console.log(searchToArray);
     searchToArray = searchToArray.split(",");
     const formattedArray = searchToArray.map(i => i.replace("_", " "));
-    const formattedText = formattedArray.toString();
+    const spacesAfterCommasArray = () => {
+        let updatedArray = [];
+        updatedArray.push(formattedArray[0]);
+        for (let i = 1; i < formattedArray.length; i++) {
+            let element = formattedArray[i];
+            const updatedElement = " " + element;
+            updatedArray.push(updatedElement);
+            }
+        return updatedArray;
+    }
+    const finalArray = spacesAfterCommasArray();
+    const formattedText = finalArray.toString();
     return formattedText;
 
 }

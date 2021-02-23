@@ -25,8 +25,8 @@ function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, fo
             <Form className="form-box" onSubmit={submitIngredients}>
                              
                     <Form.Field>
-                    <label>Enter your ingredients</label>
-                    <Input action='Search' placeholder='Enter up to 4 ingredients...' onChange={handleInput}/>
+                    <label>Enter up to 4 ingredients</label>
+                    <Input action='Search' placeholder='e.g. orange, lime...' onChange={handleInput}/>
                     </Form.Field>              
            </Form>
 

@@ -3,7 +3,7 @@ import {Card, Container, Pagination, Segment, Grid, Input} from 'semantic-ui-rea
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-function MealList({meals, ingredients, prevSearch}) {
+function MealList({meals, ingredients, prevSearch, onPageChange, pageCount}) {
     // return no cards if there are no meals. Otherwise....
     if (!meals) return null;
 
@@ -21,13 +21,15 @@ function MealList({meals, ingredients, prevSearch}) {
 
     const displayMeals = meals.map(meal => {
         return <Meal
+                key={meal.idMeal}
                 meal={meal}/>
     })
-
+    
+    console.log(pageCount);
     
     return (
   <section className="recipe-list">
-     <Pagination defaultActivePage={1} totalPages={10} onPageChange={} />
+     <Pagination defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />
     <Card.Group itemsPerRow={3} className="meal-list">
       {displayMeals}
     </Card.Group>

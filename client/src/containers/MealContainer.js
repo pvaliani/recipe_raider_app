@@ -12,10 +12,11 @@ function MealContainer() {
 
 // Create useStates for the meals and ingredients from the search form
 // They will refresh app state in virtual dom upon an alteration to themselves
-const [meals, setMeals] = useState([]);
+const [allMeals, setAllMeals] = useState([]);
 const [ingredients, setIngredients] = useState("");
 const [prevSearch, setPrevSearch] = useState("");
 const [someMeals, setSomeMeals] = useState([]);
+const [pageCount, setPageCount] = useState("");
 
 
 // const [testRecipe, setTestRecipe] = useState("");
@@ -34,7 +35,9 @@ const getMeals = (ingredients) => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            setMeals(data);
+            setAllMeals(data);
+            setSomeMeals(data.slice(0, 6))
+            setPageCount(Math.ceil(data.length/6));
         })
 }
 
@@ -56,12 +59,17 @@ const formatInput = (userInput) => {
 
 // Pagination code --------- 
 
-
+const onPageChange = (event, pageInfo) => {
+    console.log(pageInfo);
+    const { activePage } = pageInfo;
+    const startIndex = (activePage - 1)*7;
+    setSomeMeals(allMeals.slice(startIndex, startIndex + 6)); 
+}
 
 
 // End of pagination code ------- 
 
-
+// const pageCount = Math.ceil(meals.length/6);
 
 
 // Render - pass handleIngredient submit as props to the ingredient form component
@@ -71,10 +79,25 @@ return(
     <AppHeader/>
         <Switch>
             <Route exact path="/"
-                 render={() => <><IngredientForm handleIngredientSubmit={handleIngredientSubmit} ingredients={ingredients} setIngredients={setIngredients} formatInput={formatInput} prevSearch ={prevSearch} setPrevSearch ={setPrevSearch} /> <MealList meals={meals} ingredients={ingredients} prevSearch ={prevSearch} onPageChange={onPageChange}  /> </>}
+                 render={() => {
+                 return (
+                 <><IngredientForm 
+                    handleIngredientSubmit={handleIngredientSubmit} 
+                    ingredients={ingredients} 
+                    setIngredients={setIngredients} 
+                    formatInput={formatInput} 
+                    prevSearch ={prevSearch} 
+                    setPrevSearch ={setPrevSearch} />
+
+                    <MealList meals={someMeals} 
+                    ingredients={ingredients} 
+                    prevSearch ={prevSearch} 
+                    onPageChange={onPageChange} 
+                    pageCount={pageCount} /> </>)
+                 }}
                  />
             <Route path="/recipe" 
-                render={() => <Recipe meals={meals} />}/>
+                render={() => <Recipe meals={someMeals} />}/>
         </Switch>
     </>
     </Router>

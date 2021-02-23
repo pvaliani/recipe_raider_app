@@ -36,7 +36,7 @@ function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, load
             return
         }
         else {
-            return (<Pagination defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />)
+            return (<Pagination className="pagination" defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />)
         }
     }
 

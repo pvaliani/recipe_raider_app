@@ -36,7 +36,9 @@ code {
 .logo {
 
   width: 600px !important;
+}
 
-
+.pagination {
+  margin: 40px 40px 40px 0 !important;
 }
 

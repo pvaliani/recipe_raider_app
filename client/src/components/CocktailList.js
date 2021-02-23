@@ -30,7 +30,7 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
             return
         }
         else {
-            return (<Pagination defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />)
+            return (<Pagination className="pagination" defaultActivePage={1} totalPages={pageCount} onPageChange={onPageChange} />)
         }
     }
 

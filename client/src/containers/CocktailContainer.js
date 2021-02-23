@@ -87,7 +87,9 @@ return(
         <Switch>
             <Route exact path="/cocktails"
                  render={() => { return (
-                 <><CocktailIngredientForm 
+                 <>
+                 <AppHeader />
+                 <CocktailIngredientForm 
                  handleIngredientSubmit={handleIngredientSubmit} 
                  ingredients={ingredients} 
                  setIngredients={setIngredients} 

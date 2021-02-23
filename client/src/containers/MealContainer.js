@@ -1,7 +1,7 @@
 import MealList from '../components/MealList';
 import IngredientForm from '../components/IngredientForm';
 import Recipe from '../components/Recipe';
-import AppHeader from '../components/AppHeader';
+import MealAppHeader from '../components/AppHeader';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
@@ -92,12 +92,13 @@ const onPageChange = (event, pageInfo) => {
 return(
     <Router>
     <>
-    <AppHeader/>
         <Switch>
             <Route exact path="/"
                  render={() => {
                  return (
-                 <><IngredientForm 
+                 <>
+                 <MealAppHeader />
+                 <IngredientForm 
                     handleIngredientSubmit={handleIngredientSubmit} 
                     ingredients={ingredients} 
                     setIngredients={setIngredients} 

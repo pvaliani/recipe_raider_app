@@ -1,13 +1,13 @@
 import { Header, Image } from "semantic-ui-react";
-import MakeADrinkLogo from '../assets/MakeADrinkLogo.png';
+import MealLogo from '../assets/MealLogo.png';
 
-function AppHeader(){
+function MealAppHeader(){
 
 
     return(
         <>
          <Header className="recipeHeader" textAlign="center"  as='h2'>
-          <Image circular src={MakeADrinkLogo} className='logo' /> 
+          <Image circular src={MealLogo} className='logo' /> 
         </Header>
         </>
     )
@@ -17,4 +17,4 @@ function AppHeader(){
 
 
 
-export default AppHeader;
+export default MealAppHeader;

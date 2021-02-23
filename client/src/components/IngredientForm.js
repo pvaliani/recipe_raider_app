@@ -9,9 +9,9 @@ function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, fo
 
     const handleInput = (event) => {
         const formattedInput = formatInput(event.target.value);
-        console.log(formattedInput);
+        // console.log(formattedInput);
         setIngredients(formattedInput);
-        console.log(ingredients);
+        // console.log(ingredients);
     }
 
     const submitIngredients = (event) => {

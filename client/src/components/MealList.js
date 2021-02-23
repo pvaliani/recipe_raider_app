@@ -1,6 +1,7 @@
 import Meal from './Meal';
 import {Card, Container, Pagination, Segment, Grid, Input} from 'semantic-ui-react'
-import { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 function MealList({meals, ingredients, prevSearch}) {
     // return no cards if there are no meals. Otherwise....
@@ -26,7 +27,7 @@ function MealList({meals, ingredients, prevSearch}) {
     
     return (
   <section className="recipe-list">
-     <Pagination defaultActivePage={5} totalPages={10} />
+     <Pagination defaultActivePage={1} totalPages={10} />
     <Card.Group itemsPerRow={3} className="meal-list">
       {displayMeals}
     </Card.Group>

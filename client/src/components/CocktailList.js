@@ -10,8 +10,8 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
      if (cocktails && cocktails.length === 0 && prevSearch !== "" && loaded===true) {
       formatPrevSearch(prevSearch);
       return (
-          <Container text>
-            <p>No cocktail recipes matching {formattedPrevSeach}</p>
+          <Container className="aboutContainer" text>
+            <p className="searchMsg"> No cocktail recipes matching {formattedPrevSeach}</p>
           </Container>
       );
     }

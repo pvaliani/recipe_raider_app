@@ -11,8 +11,8 @@ function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, load
     // logic for only returning valid searches
     if (meals && meals.length === 0 && prevSearch !== "" && loaded===true) {
       return (
-          <Container text>
-            <p>No recipes matching {formattedPrevSeach}</p>
+          <Container className="aboutContainer" text>
+            <p className="searchMsg">No recipes matching {formattedPrevSeach}</p>
           </Container>
       );
     }

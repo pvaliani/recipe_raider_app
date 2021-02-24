@@ -46,3 +46,20 @@ code {
   color: #e54e62!important;
 }
 
+.navigation > li {
+  list-style: none;
+  display: inline;
+  margin-right: 20px;
+}
+.navigation > li .link {
+  list-style: none;
+  text-decoration: none;
+  font-size: 20px;
+  border-bottom: solid 2px #fff !important;
+  transition: border ease-in 0.5s;
+  color: white;
+}
+.navigation > li .link:hover {
+  border-bottom: solid 2px rgb(206, 87, 87) !important;
+}
+

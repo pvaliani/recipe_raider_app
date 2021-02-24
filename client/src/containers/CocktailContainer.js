@@ -108,7 +108,8 @@ return(
                  prevSearch ={prevSearch} 
                  setPrevSearch ={setPrevSearch} /> 
                  
-                 <CocktailList cocktails={someCocktails} 
+                 <CocktailList allCocktails={cocktails}
+                 cocktails={someCocktails} 
                  ingredients={ingredients} 
                  prevSearch={prevSearch}
                  onPageChange={onPageChange}

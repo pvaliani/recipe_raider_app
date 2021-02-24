@@ -115,7 +115,8 @@ return(
                     prevSearch ={prevSearch} 
                     setPrevSearch ={setPrevSearch} />
 
-                    <MealList meals={someMeals} 
+                    <MealList allMeals={allMeals}
+                    meals={someMeals} 
                     ingredients={ingredients} 
                     prevSearch ={prevSearch} 
                     onPageChange={onPageChange} 

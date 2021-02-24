@@ -3,7 +3,7 @@ import {Card, Container, Pagination, Segment, Grid, Input} from 'semantic-ui-rea
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, loaded, formatPrevSearch}) {
+function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, loaded, formatPrevSearch, allMeals}) {
     // return no cards if there are no meals. Otherwise....
     if (!meals) return null;
     const formattedPrevSeach = formatPrevSearch(prevSearch);
@@ -32,7 +32,7 @@ function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, load
 
 // Pagination is displayed only if there are meals  from the fetch i.e cocktails.length > 0
     const displayPagination = () => {
-        if (meals.length < 6){
+        if (allMeals.length < 6){
             return
         }
         else {

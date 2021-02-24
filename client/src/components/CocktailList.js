@@ -1,7 +1,7 @@
 import Cocktail from './Cocktail';
 import {Card, Container, Pagination} from 'semantic-ui-react'
 
-function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCount, formatPrevSearch, loaded}) {
+function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCount, formatPrevSearch, loaded, allCocktails}) {
     // return no cards if there are no cocktails. Otherwise....
     if (!cocktails) return null;
     const formattedPrevSeach = formatPrevSearch(prevSearch);
@@ -26,7 +26,7 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
     // Pagination is displayed only if there are cocktails from the fetch i.e cocktails.length > 0
 
     const displayPagination = () => {
-        if (cocktails.length < 6){
+        if (allCocktails.length < 6){
             return
         }
         else {

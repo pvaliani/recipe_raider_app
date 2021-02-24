@@ -10,7 +10,7 @@ function Meal({meal}){
 
     return (
         <>
-        <Card className="meal">
+        <Card color='pink' className="meal">
                 <Image
                     src={meal.strMealThumb}
                     wrapped
@@ -25,7 +25,7 @@ function Meal({meal}){
                         onClose={() => setOpen(false)}
                         onOpen={() => setOpen(true)}
                         open={open} trigger={
-                    <a>
+                    <a className= "cardContent">
                         <Icon name="food" />
                         Show recipe
                     </a>}

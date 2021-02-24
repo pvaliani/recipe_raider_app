@@ -42,3 +42,7 @@ code {
   margin: 40px 40px 40px 0 !important;
 }
 
+.cardContent:hover {
+  color: #e54e62!important;
+}
+

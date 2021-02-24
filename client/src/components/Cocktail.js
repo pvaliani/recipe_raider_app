@@ -10,7 +10,7 @@ function Cocktail({cocktail}){
 
     return (
         <>
-        <Card className="meal">
+        <Card color='pink' className="meal">
                 <Image
                     src={cocktail.strDrinkThumb}
                     wrapped
@@ -26,7 +26,7 @@ function Cocktail({cocktail}){
                         onClose={() => setOpen(false)}
                         onOpen={() => setOpen(true)}
                         open={open} trigger={
-                    <a>
+                    <a className= "cardContent">
                         <Icon name="glass martini" />
                         Show cocktail recipe
                     </a>}

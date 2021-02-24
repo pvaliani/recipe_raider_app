@@ -45,6 +45,7 @@ code {
   list-style: none !important;
   display: inline !important;
   margin-right: 20px !important;
+  font-size: 16px !important;
 }
 
 .link {
@@ -54,9 +55,13 @@ code {
   transition: border ease-in 0.5s !important;
   color: #e54e62 !important;
 }
-/* .link:hover {
-  border-bottom: solid 2px #e54e62 !important;
-} */
+
+.gitHub{
+  text-decoration: none !important;
+  border-bottom: solid 1px #e54e62 !important;
+  color: #e54e62 !important;
+
+}
 
 .aboutHeader{
   color: #e54e62 !important;
@@ -79,5 +84,23 @@ code {
 .selected:hover {
 	border-bottom: solid 1px #e54e62 !important;
   color: #e54e62;
+}
+
+.aboutContainer > p {
+  max-width: 700px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  align-items: center !important;
+  color: #e54e62 !important;
+  font-size: 16px !important;
+}
+
+.aboutImages {
+  align-items: center !important;
+  align-content: center !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  
 }
 

@@ -19,11 +19,11 @@ function AboutPage(){
         <Container className='aboutContainer'>
             <br></br>
             <p>
-            Stuck in a recipe rut? Looking to expand your drinks repertoire? Make a Meal of It uses the MealDB API to bring back recipe suggestions based on up to 4 key ingredients, which will inspire you to get back in the kitchen! 
+            Stuck in a recipe rut? Looking to expand your drinks repertoire? Make a Meal of It uses the <a className="gitHub" href="https://www.themealdb.com/">MealDB API</a> to bring back recipe suggestions based on up to 4 key ingredients, which will inspire you to get back in the kitchen! 
             </p>
-            <p>Make a Night of It does the same thing with the CocktailDB API. But for your drinks cabinet.</p>
+            <p>Make a Night of It does the same thing with the <a className="gitHub" href="https://thecocktaildb.com/">CocktailDB API</a>. But for your drinks cabinet.</p>
             <p>
-                <a className="gitHub" href='https://github.com/pvaliani'> Pedram</a> , <a className="gitHub" href='https://github.com/lauracdobie'> Laura</a> and <a className="gitHub" href='https://github.com/Knichols02'>Kirsten </a> made Make a Meal of It and Make a Night of it. You can check out our other projects at: 
+                <a className="gitHub" href='https://github.com/pvaliani'> Pedram</a> , <a className="gitHub" href='https://github.com/lauracdobie'> Laura</a> and <a className="gitHub" href='https://github.com/Knichols02'>Kirsten </a> made Make a Meal of It and Make a Night of It. You can check out our other projects on GitHub.
                 
             </p>
             <p className="aboutImages">

@@ -26,7 +26,7 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
     // Pagination is displayed only if there are cocktails from the fetch i.e cocktails.length > 0
 
     const displayPagination = () => {
-        if (cocktails.length === 0){
+        if (cocktails.length < 6){
             return
         }
         else {

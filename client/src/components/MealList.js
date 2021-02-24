@@ -32,7 +32,7 @@ function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, load
 
 // Pagination is displayed only if there are meals  from the fetch i.e cocktails.length > 0
     const displayPagination = () => {
-        if (meals.length === 0){
+        if (meals.length < 6){
             return
         }
         else {

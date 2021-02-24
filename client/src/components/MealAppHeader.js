@@ -9,9 +9,9 @@ function MealAppHeader(){
         <>
         <nav>
             <ul className='navigation'>
-                <li>< Link className='link' to="/">Home </Link></li>
-                <li>< Link className='link' to="/cocktails">Cocktails</Link></li>
-                <li>< Link className='link' to="/about">About</Link></li>
+                <li>< Link className='link' className='selected' to="/">Home </Link></li>
+                <li>< Link className='link' className='deselected' to="/cocktails">Cocktails</Link></li>
+                <li>< Link className='link'  className='deselected' to="/about">About</Link></li>
             </ul>
         </nav>
          <Header className="recipeHeader" textAlign="center"  as='h2'>

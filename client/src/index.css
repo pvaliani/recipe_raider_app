@@ -56,14 +56,32 @@ code {
   text-decoration: none !important;
   border-bottom: solid 2px #fff !important;
   transition: border ease-in 0.5s !important;
-  color: rgb(206, 87, 87) !important;
+  color: #e54e62 !important;
 }
 .link:hover {
-  border-bottom: solid 2px rgb(206, 87, 87) !important;
+  border-bottom: solid 2px #e54e62 !important;
 }
 
 .aboutHeader{
   color: #e54e62 !important;
 
+}
+
+.deselected {
+	transition: border ease-in 0.5s;
+  color: #e54e62
+}
+.deselected:hover {
+	border-bottom: solid 2px #fff !important;
+  color: #e54e62
+}
+.selected {
+	border-bottom: solid 2px #e54e62 !important;
+  color: #e54e62;
+}
+
+.selected:hover {
+	border-bottom: solid 2px #e54e62 !important;
+  color: #e54e62;
 }
 

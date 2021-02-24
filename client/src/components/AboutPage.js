@@ -6,11 +6,11 @@ function AboutPage(){
         <>
         <nav>
             <ul className='navigation'>
-                <li>< Link className='link' to="/">Meals </Link></li>
-                <li>< Link className='link' to="/cocktails">Cocktails</Link></li>
+                <li>< Link className='link' className='deselected' to="/">Home </Link></li>
+                <li>< Link className='link' className='deselected' to="/cocktails">Cocktails</Link></li>
+                <li>< Link className='link' className='selected'to="/about">About</Link></li>
             </ul>
         </nav>
-
         <Header className='aboutHeader' textAlign="center"  as='h1'>
             About
         </Header>

@@ -16,9 +16,8 @@ function AboutPage(){
         </Header>
         <Container>
             <p>
-                Comments about the App
-                Creators
-                etc 
+            Stuck in a recipe rut? Looking to expand your drinks repertoire? Make a Meal of It uses the MealDB API to bring back recipe suggestions based on up to 4 key ingredients, which will inspire you to get back in the kitchen! Make a Night of It does the same thing with the CocktailDB API. But for your drinks cabinet.
+Pedram, Laura and Kirsten made Make a Meal of It and Make a Night of it. You can check out our other projects at: insert GitHub links.
             </p>
         </Container>
         </>

@@ -3,7 +3,7 @@ import IngredientForm from '../components/IngredientForm';
 import Recipe from '../components/Recipe';
 import MealAppHeader from '../components/MealAppHeader';
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -125,8 +125,8 @@ return(
                     formatPrevSearch={formatPrevSearch}/> </>)
                  }}
                  />
-            <Route path="/recipe" 
-                render={() => <Recipe meals={someMeals} />}/>
+            {/* <Route path="/recipe" 
+                render={() => <Recipe meals={someMeals} />}/> */}
         </Switch>
     </>
     </Router>

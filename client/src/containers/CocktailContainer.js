@@ -117,8 +117,8 @@ return(
                  loaded={loaded}
                  formatPrevSearch={formatPrevSearch}/> </>)}}
                  />
-            <Route path="/cocktailrecipe" 
-                render={() => <CocktailRecipe cocktails={someCocktails} />}/>
+            {/* <Route path="/cocktailrecipe" 
+                render={() => <CocktailRecipe cocktails={someCocktails} />}/> */}
         </Switch>
     </>
     </Router>

@@ -6,7 +6,7 @@ function AboutPage(){
         <>
         <nav>
             <ul className='navigation'>
-                <li>< Link className='link' className='deselected' to="/">Home </Link></li>
+                <li>< Link className='link' className='deselected' to="/">Meals</Link></li>
                 <li>< Link className='link' className='deselected' to="/cocktails">Cocktails</Link></li>
                 <li>< Link className='link' className='selected'to="/about">About</Link></li>
             </ul>

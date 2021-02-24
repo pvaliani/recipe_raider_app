@@ -93,12 +93,7 @@ const onPageChange = (event, pageInfo) => {
 
 // Render - pass handleIngredient submit as props to the ingredient form component
 return(
-    <Router>
     <>
-        <Switch>
-            <Route exact path="/cocktails"
-                 render={() => { return (
-                 <>
                  <AppHeader />
                  <CocktailIngredientForm 
                  handleIngredientSubmit={handleIngredientSubmit} 
@@ -115,13 +110,8 @@ return(
                  onPageChange={onPageChange}
                  pageCount={pageCount}
                  loaded={loaded}
-                 formatPrevSearch={formatPrevSearch}/> </>)}}
-                 />
-            {/* <Route path="/cocktailrecipe" 
-                render={() => <CocktailRecipe cocktails={someCocktails} />}/> */}
-        </Switch>
-    </>
-    </Router>
+                 formatPrevSearch={formatPrevSearch}/>
+     </>
 );
 
 }

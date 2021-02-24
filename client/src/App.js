@@ -8,6 +8,7 @@ import IngredientForm from './components/IngredientForm';
 import MealList from './components/MealList';
 import MealContainer from './containers/MealContainer';
 import CocktailContainer from './containers/CocktailContainer';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 
 
@@ -15,8 +16,17 @@ import CocktailContainer from './containers/CocktailContainer';
 function App() {
   return (
     <>
-      <MealContainer />
-      <CocktailContainer />
+    <Router>
+    <>
+        <Switch>
+        <Route exact path="/" 
+                render={() => <MealContainer />}/>
+        <Route path="/cocktails" 
+                render={() => <CocktailContainer />}/>
+                 
+        </Switch>
+    </>
+    </Router>
     </>);
 }
 

@@ -9,6 +9,7 @@ import MealList from './components/MealList';
 import MealContainer from './containers/MealContainer';
 import CocktailContainer from './containers/CocktailContainer';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import AboutPage from './components/AboutPage';
 
 
 
@@ -23,7 +24,8 @@ function App() {
                 render={() => <MealContainer />}/>
         <Route path="/cocktails" 
                 render={() => <CocktailContainer />}/>
-                 
+        <Route path="/about"
+                render={() => <AboutPage />} />         
         </Switch>
     </>
     </Router>

@@ -64,8 +64,7 @@ const formatInput = (userInput) => {
 
 const formatPrevSearch = (text) => {
 
-    let searchToArray = text.replace(',', ', ')
-    searchToArray = searchToArray.split(",");
+    const searchToArray = text.split(",");
     const formattedArray = searchToArray.map(i => i.replace("_", " "));
     const spacesAfterCommasArray = () => {
         let updatedArray = [];

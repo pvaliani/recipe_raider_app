@@ -3,6 +3,7 @@ package com.example.codeclan.server.controllers;
 
 import com.example.codeclan.server.apis.MealAPI;
 import com.example.codeclan.server.models.Meal;
+import com.example.codeclan.server.services.LRUCache;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,21 +20,21 @@ import java.util.*;
 @RestController
 public class MealController {
 
-    class LRUCache<K, V> extends LinkedHashMap<K, V> {
-
-        private static final long serialVersionUID = 1L;
-        private int lruSize;
-
-        public LRUCache(int lruSize) {
-            super(16, 0.75f, true);
-            this.lruSize = lruSize;
-        }
-
-        @Override
-        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-            return size() > lruSize;
-        }
-    }
+//    class LRUCache<K, V> extends LinkedHashMap<K, V> {
+//
+//        private static final long serialVersionUID = 1L;
+//        private int lruSize;
+//
+//        public LRUCache(int lruSize) {
+//            super(16, 0.75f, true);
+//            this.lruSize = lruSize;
+//        }
+//
+//        @Override
+//        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+//            return size() > lruSize;
+//        }
+//    }
 
     private Map<String, List<JsonNode>> cache = new LRUCache<>(6);
     private Map<String, List<JsonNode>> cocktailCache = new LRUCache<>(6);

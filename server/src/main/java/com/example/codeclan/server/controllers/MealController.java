@@ -14,37 +14,51 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class MealController {
 
-    private HashMap<String, List<JsonNode>> cache;
-    private HashMap<String, List<JsonNode>> cocktailCache;
+    class LRUCache<K, V> extends LinkedHashMap<K, V> {
 
-    public MealController(HashMap cache, HashMap cocktailCache){
-        this.cache = new HashMap<>();
-        this.cocktailCache = new HashMap<>();
+        private static final long serialVersionUID = 1L;
+        private int lruSize;
+
+        public LRUCache(int lruSize) {
+            super(16, 0.75f, true);
+            this.lruSize = lruSize;
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+            return size() > lruSize;
+        }
     }
 
-    public HashMap<String, List<JsonNode>> getCache() {
-        return cache;
-    }
+    private Map<String, List<JsonNode>> cache = new LRUCache<>(6);
+    private Map<String, List<JsonNode>> cocktailCache = new LRUCache<>(6);
 
-    public void setCache(HashMap<String, List<JsonNode>> cache) {
-        this.cache = cache;
-    }
-
-    public HashMap<String, List<JsonNode>> getCocktailCache() {
-        return cocktailCache;
-    }
-
-
-    public void setCocktailCache(HashMap<String, List<JsonNode>> cocktailCache) {
-        this.cocktailCache = cocktailCache;
-    }
+//    public MealController(Map cache, Map cocktailCache){
+//        this.cache = new LRUCache<>(6);
+//        this.cocktailCache = new LRUCache<>(6);
+//    }
+//
+//    public Map<String, List<JsonNode>> getCache() {
+//        return cache;
+//    }
+//
+//    public void setCache(Map<String, List<JsonNode>> cache) {
+//        this.cache = cache;
+//    }
+//
+//    public Map<String, List<JsonNode>> getCocktailCache() {
+//        return cocktailCache;
+//    }
+//
+//
+//    public void setCocktailCache(Map<String, List<JsonNode>> cocktailCache) {
+//        this.cocktailCache = cocktailCache;
+//    }
 
     @Autowired
     MealAPI mealAPI;
@@ -96,12 +110,6 @@ public class MealController {
 
         return cocktailRecipeNodes;
     }
-
-//    this is the cache version
-    // Hola!
-
-
-//     THIS IS WHERE THE COCKTAIL API INFO STARTS!!!!
 
 
 

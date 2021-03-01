@@ -20,46 +20,8 @@ import java.util.*;
 @RestController
 public class MealController {
 
-//    class LRUCache<K, V> extends LinkedHashMap<K, V> {
-//
-//        private static final long serialVersionUID = 1L;
-//        private int lruSize;
-//
-//        public LRUCache(int lruSize) {
-//            super(16, 0.75f, true);
-//            this.lruSize = lruSize;
-//        }
-//
-//        @Override
-//        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-//            return size() > lruSize;
-//        }
-//    }
-
     private Map<String, List<JsonNode>> cache = new LRUCache<>(6);
     private Map<String, List<JsonNode>> cocktailCache = new LRUCache<>(6);
-
-//    public MealController(Map cache, Map cocktailCache){
-//        this.cache = new LRUCache<>(6);
-//        this.cocktailCache = new LRUCache<>(6);
-//    }
-//
-//    public Map<String, List<JsonNode>> getCache() {
-//        return cache;
-//    }
-//
-//    public void setCache(Map<String, List<JsonNode>> cache) {
-//        this.cache = cache;
-//    }
-//
-//    public Map<String, List<JsonNode>> getCocktailCache() {
-//        return cocktailCache;
-//    }
-//
-//
-//    public void setCocktailCache(Map<String, List<JsonNode>> cocktailCache) {
-//        this.cocktailCache = cocktailCache;
-//    }
 
     @Autowired
     MealAPI mealAPI;

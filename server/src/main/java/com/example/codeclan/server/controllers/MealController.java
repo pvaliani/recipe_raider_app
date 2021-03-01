@@ -72,6 +72,9 @@ public class MealController {
     public List<JsonNode> getMealsFromApi(@PathVariable String ingredients) {
 
         if(cache.containsKey(ingredients) == true) {
+//            cache.forEach((key, value) -> {
+//                System.out.println("Saved search: " + key);
+//            });
             return cache.get(ingredients);
         }
 
@@ -84,7 +87,12 @@ public class MealController {
           recipeNodes.add(mealAPI.getRecipe(Integer.toString(recipeId)));
         }
 
-        cache.put(ingredients, recipeNodes);
+        if (recipeNodes.size() > 0) {
+            cache.put(ingredients, recipeNodes);
+        }
+//        cache.forEach((key, value) -> {
+//            System.out.println("Saved search: " + key);
+//        });
 
         return recipeNodes;
     }
@@ -94,6 +102,9 @@ public class MealController {
     public List<JsonNode> getCocktailsFromApi(@PathVariable String ingredients) {
 
         if(cocktailCache.containsKey(ingredients) == true) {
+//            cocktailCache.forEach((key, value) -> {
+//                System.out.println("Saved search: " + key);
+//            });
             return cocktailCache.get(ingredients);
         }
 
@@ -106,7 +117,13 @@ public class MealController {
             cocktailRecipeNodes.add(mealAPI.getCocktail(Integer.toString(cocktailId)));
         }
 
-        cocktailCache.put(ingredients, cocktailRecipeNodes);
+        if (cocktailRecipeNodes.size() > 0) {
+            cocktailCache.put(ingredients, cocktailRecipeNodes);
+        }
+
+//        cocktailCache.forEach((key, value) -> {
+//            System.out.println("Saved search: " + key);
+//        });
 
         return cocktailRecipeNodes;
     }

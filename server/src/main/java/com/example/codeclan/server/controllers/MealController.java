@@ -20,8 +20,13 @@ import java.util.*;
 @RestController
 public class MealController {
 
-    private Map<String, List<JsonNode>> cache = new LRUCache<>(6);
-    private Map<String, List<JsonNode>> cocktailCache = new LRUCache<>(6);
+    private Map<String, List<JsonNode>> cache;
+    private Map<String, List<JsonNode>> cocktailCache;
+
+    public MealController() {
+        this.cache = new LRUCache<>(6);
+        this.cocktailCache = new LRUCache<>(6);
+    }
 
     @Autowired
     MealAPI mealAPI;

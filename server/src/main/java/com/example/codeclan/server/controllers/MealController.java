@@ -3,6 +3,7 @@ package com.example.codeclan.server.controllers;
 
 import com.example.codeclan.server.apis.MealAPI;
 import com.example.codeclan.server.models.Meal;
+import com.example.codeclan.server.services.LRUCache;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,36 +15,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class MealController {
 
-    private HashMap<String, List<JsonNode>> cache;
-    private HashMap<String, List<JsonNode>> cocktailCache;
+    private Map<String, List<JsonNode>> cache;
+    private Map<String, List<JsonNode>> cocktailCache;
 
-    public MealController(HashMap cache, HashMap cocktailCache){
-        this.cache = new HashMap<>();
-        this.cocktailCache = new HashMap<>();
-    }
-
-    public HashMap<String, List<JsonNode>> getCache() {
-        return cache;
-    }
-
-    public void setCache(HashMap<String, List<JsonNode>> cache) {
-        this.cache = cache;
-    }
-
-    public HashMap<String, List<JsonNode>> getCocktailCache() {
-        return cocktailCache;
-    }
-
-
-    public void setCocktailCache(HashMap<String, List<JsonNode>> cocktailCache) {
-        this.cocktailCache = cocktailCache;
+    public MealController() {
+        this.cache = new LRUCache<>(6);
+        this.cocktailCache = new LRUCache<>(6);
     }
 
     @Autowired
@@ -58,6 +40,9 @@ public class MealController {
     public List<JsonNode> getMealsFromApi(@PathVariable String ingredients) {
 
         if(cache.containsKey(ingredients) == true) {
+//            cache.forEach((key, value) -> {
+//                System.out.println("Saved search: " + key);
+//            });
             return cache.get(ingredients);
         }
 
@@ -70,7 +55,12 @@ public class MealController {
           recipeNodes.add(mealAPI.getRecipe(Integer.toString(recipeId)));
         }
 
-        cache.put(ingredients, recipeNodes);
+        if (recipeNodes.size() > 0) {
+            cache.put(ingredients, recipeNodes);
+        }
+//        cache.forEach((key, value) -> {
+//            System.out.println("Saved search: " + key);
+//        });
 
         return recipeNodes;
     }
@@ -80,6 +70,9 @@ public class MealController {
     public List<JsonNode> getCocktailsFromApi(@PathVariable String ingredients) {
 
         if(cocktailCache.containsKey(ingredients) == true) {
+//            cocktailCache.forEach((key, value) -> {
+//                System.out.println("Saved search: " + key);
+//            });
             return cocktailCache.get(ingredients);
         }
 
@@ -92,16 +85,16 @@ public class MealController {
             cocktailRecipeNodes.add(mealAPI.getCocktail(Integer.toString(cocktailId)));
         }
 
-        cocktailCache.put(ingredients, cocktailRecipeNodes);
+        if (cocktailRecipeNodes.size() > 0) {
+            cocktailCache.put(ingredients, cocktailRecipeNodes);
+        }
+
+//        cocktailCache.forEach((key, value) -> {
+//            System.out.println("Saved search: " + key);
+//        });
 
         return cocktailRecipeNodes;
     }
-
-//    this is the cache version
-    // Hola!
-
-
-//     THIS IS WHERE THE COCKTAIL API INFO STARTS!!!!
 
 
 

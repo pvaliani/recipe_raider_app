@@ -11,7 +11,7 @@ function IngredientForm({handleIngredientSubmit, ingredients, setIngredients, fo
         const formattedInput = formatInput(event.target.value);
         // console.log(formattedInput);
         setIngredients(formattedInput);
-        // console.log(ingredients);
+        console.log(ingredients);
     }
 
     const submitIngredients = (event) => {

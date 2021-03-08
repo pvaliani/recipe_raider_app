@@ -15,7 +15,7 @@ function Recipe({recipe}) {
       Object.keys(recipe).forEach((k, i) => { 
         values.push(recipe[k]) });
       
-      for (let i = 29; i < values.length - 2; i++) { 
+      for (let i = 29; i < values.length - 4; i++) { 
         if (values[i] !== null && values[i] !== "") { 
           const element = values[i] + " " + values[i-20]; 
           ingredientsList.push(element); } 

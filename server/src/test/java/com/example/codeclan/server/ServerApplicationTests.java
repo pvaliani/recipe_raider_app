@@ -4,6 +4,7 @@ import com.example.codeclan.server.apis.MealAPI;
 import com.example.codeclan.server.services.LRUCache;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Map;
@@ -16,6 +17,9 @@ class ServerApplicationTests {
 
 	@Autowired
 	MealAPI mealAPI;
+
+	@Value("${api.key}")
+	String apiKey;
 
 	Map<String,String> testCache = new LRUCache<>(5);
 
@@ -40,6 +44,11 @@ class ServerApplicationTests {
 		assertEquals(5, testCache.size());
 		assertFalse(testCache.containsKey("Laura"));
 
+	}
+
+	@Test
+	public void canGetAPIKey() {
+		System.out.println(apiKey);
 	}
 
 }

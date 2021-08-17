@@ -1,7 +1,6 @@
 import { Header, Image } from "semantic-ui-react";
 import MakeADrinkLogo from '../assets/MakeADrinkLogo.png';
 import { Link } from 'react-router-dom';
-import NavBar from './NavBar';
 
 function AppHeader(){
 

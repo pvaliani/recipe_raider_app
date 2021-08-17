@@ -1,11 +1,9 @@
 package com.example.codeclan.server.apis;
 
 
-import com.example.codeclan.server.models.Meal;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.tools.javac.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -89,8 +87,6 @@ public class MealAPI {
         JsonNode recipeNode =  mealsNode.get(0);
 
         return recipeNode;
-
-
     }
 
     public JsonNode getCocktails(String ingredients) {
@@ -154,13 +150,5 @@ public class MealAPI {
         JsonNode cocktailRecipeNode =  cocktailNode.get(0);
 
         return cocktailRecipeNode;
-
-
     }
-
-
-
-
-
-
 }

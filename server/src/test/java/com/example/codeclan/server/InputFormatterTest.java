@@ -2,7 +2,6 @@ package com.example.codeclan.server;
 
 import com.example.codeclan.server.services.InputFormatter;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,7 +1,7 @@
 import Meal from './Meal';
-import {Card, Container, Pagination, Segment, Grid, Input} from 'semantic-ui-react'
+import {Card, Container, Pagination} from 'semantic-ui-react'
 
-function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, loaded, allMeals}) {
+function MealList({meals, prevSearch, onPageChange, pageCount, loaded, allMeals}) {
     // return no cards if there are no meals. Otherwise....
     if (!meals) return null;
 

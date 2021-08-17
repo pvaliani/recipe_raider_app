@@ -1,10 +1,7 @@
 package com.example.codeclan.server.services;
 
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class InputFormatter {
 
@@ -18,11 +15,9 @@ public class InputFormatter {
 
         String finalInput = "";
         for (int i = 0; i < inputArrayList.size(); i++) {
-            if (finalInput != "") {
-                finalInput = finalInput + "," + formatIndividualWord(inputArrayList.get(i));
-            }
-            else {
-                finalInput = finalInput + formatIndividualWord(inputArrayList.get(i));
+            finalInput += formatIndividualWord(inputArrayList.get(i));
+            if (i < inputArrayList.size() - 1){
+                finalInput += ",";
             }
         }
         return finalInput;

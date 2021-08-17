@@ -1,18 +1,15 @@
 import Meal from './Meal';
 import {Card, Container, Pagination, Segment, Grid, Input} from 'semantic-ui-react'
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 
-function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, loaded, formatPrevSearch, allMeals}) {
+function MealList({meals, ingredients, prevSearch, onPageChange, pageCount, loaded, allMeals}) {
     // return no cards if there are no meals. Otherwise....
     if (!meals) return null;
-    const formattedPrevSeach = formatPrevSearch(prevSearch);
 
     // logic for only returning valid searches
     if (meals && meals.length === 0 && prevSearch !== "" && loaded===true) {
       return (
           <Container className="aboutContainer" text>
-            <p className="searchMsg">No recipes matching {formattedPrevSeach}</p>
+            <p className="searchMsg">No recipes matching {prevSearch.toLowerCase()}</p>
           </Container>
       );
     }

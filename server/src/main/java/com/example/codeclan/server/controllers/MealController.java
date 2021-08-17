@@ -3,6 +3,7 @@ package com.example.codeclan.server.controllers;
 
 import com.example.codeclan.server.apis.MealAPI;
 import com.example.codeclan.server.models.Meal;
+import com.example.codeclan.server.services.InputFormatter;
 import com.example.codeclan.server.services.LRUCache;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -22,10 +23,12 @@ public class MealController {
 
     private Map<String, List<JsonNode>> cache;
     private Map<String, List<JsonNode>> cocktailCache;
+    private InputFormatter inputFormatter;
 
     public MealController() {
         this.cache = new LRUCache<>(6);
         this.cocktailCache = new LRUCache<>(6);
+        this.inputFormatter = new InputFormatter();
     }
 
     @Autowired
@@ -38,15 +41,12 @@ public class MealController {
 
     @GetMapping (value="/api/meals/{ingredients}")
     public List<JsonNode> getMealsFromApi(@PathVariable String ingredients) {
-
-        if(cache.containsKey(ingredients) == true) {
-//            cache.forEach((key, value) -> {
-//                System.out.println("Saved search: " + key);
-//            });
-            return cache.get(ingredients);
+        String formattedMealIngredients = inputFormatter.formatInput(ingredients);
+        if(cache.containsKey(formattedMealIngredients) == true) {
+            return cache.get(formattedMealIngredients);
         }
 
-        JsonNode foundMeals = mealAPI.getMeals(ingredients);
+        JsonNode foundMeals = mealAPI.getMeals(formattedMealIngredients);
         List<JsonNode> recipeNodes = new ArrayList<>();
 
         for (JsonNode node:foundMeals) {
@@ -56,11 +56,8 @@ public class MealController {
         }
 
         if (recipeNodes.size() > 0) {
-            cache.put(ingredients, recipeNodes);
+            cache.put(formattedMealIngredients, recipeNodes);
         }
-//        cache.forEach((key, value) -> {
-//            System.out.println("Saved search: " + key);
-//        });
 
         return recipeNodes;
     }
@@ -68,15 +65,12 @@ public class MealController {
 //    COCKTAILS START HERE!
     @GetMapping (value="/api/cocktails/{ingredients}")
     public List<JsonNode> getCocktailsFromApi(@PathVariable String ingredients) {
-
-        if(cocktailCache.containsKey(ingredients) == true) {
-//            cocktailCache.forEach((key, value) -> {
-//                System.out.println("Saved search: " + key);
-//            });
-            return cocktailCache.get(ingredients);
+        String formattedCocktailIngredients = inputFormatter.formatInput(ingredients);
+        if(cocktailCache.containsKey(formattedCocktailIngredients) == true) {
+            return cocktailCache.get(formattedCocktailIngredients);
         }
 
-        JsonNode foundCocktails = mealAPI.getCocktails(ingredients);
+        JsonNode foundCocktails = mealAPI.getCocktails(formattedCocktailIngredients);
         List<JsonNode> cocktailRecipeNodes = new ArrayList<>();
 
         for (JsonNode node:foundCocktails) {
@@ -86,20 +80,9 @@ public class MealController {
         }
 
         if (cocktailRecipeNodes.size() > 0) {
-            cocktailCache.put(ingredients, cocktailRecipeNodes);
+            cocktailCache.put(formattedCocktailIngredients, cocktailRecipeNodes);
         }
-
-//        cocktailCache.forEach((key, value) -> {
-//            System.out.println("Saved search: " + key);
-//        });
 
         return cocktailRecipeNodes;
     }
-
-
-
-
-
-
-
 }

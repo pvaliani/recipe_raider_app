@@ -1,17 +1,14 @@
 import Cocktail from './Cocktail';
 import {Card, Container, Pagination} from 'semantic-ui-react'
 
-function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCount, formatPrevSearch, loaded, allCocktails}) {
+function CocktailList({cocktails, prevSearch, onPageChange, pageCount, loaded, allCocktails}) {
     // return no cards if there are no cocktails. Otherwise....
     if (!cocktails) return null;
-    const formattedPrevSeach = formatPrevSearch(prevSearch);
-
      // logic for only returning valid searches
      if (cocktails && cocktails.length === 0 && prevSearch !== "" && loaded===true) {
-      formatPrevSearch(prevSearch);
       return (
           <Container className="aboutContainer" text>
-            <p className="searchMsg"> No cocktail recipes matching {formattedPrevSeach}</p>
+            <p className="searchMsg"> No cocktail recipes matching {prevSearch.toLowerCase()}</p>
           </Container>
       );
     }
@@ -50,6 +47,5 @@ function CocktailList({cocktails, ingredients, prevSearch, onPageChange, pageCou
   </section>
         );
 }
-
 
 export default CocktailList;

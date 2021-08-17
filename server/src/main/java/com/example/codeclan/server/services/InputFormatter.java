@@ -19,12 +19,16 @@ public class InputFormatter {
         String finalInput = "";
         for (int i = 0; i < inputArrayList.size(); i++) {
             if (finalInput != "") {
-                finalInput = finalInput + "," + inputArrayList.get(i).toString().trim().replace(" ", "_");
+                finalInput = finalInput + "," + formatIndividualWord(inputArrayList.get(i));
             }
             else {
-                finalInput = finalInput + inputArrayList.get(i).toString().trim().replace(" ", "_");;
+                finalInput = finalInput + formatIndividualWord(inputArrayList.get(i));
             }
         }
         return finalInput;
+    }
+
+    private String formatIndividualWord(Object word) {
+        return word.toString().trim().replace(" ", "_");
     }
 }

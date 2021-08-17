@@ -1,11 +1,7 @@
 import CocktailList from '../components/CocktailList';
 import CocktailIngredientForm from '../components/CocktailIngredientForm';
-import CocktailRecipe from '../components/CocktailRecipe';
 import AppHeader from '../components/AppHeader';
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-
 
 function CocktailContainer() {
 
@@ -42,46 +38,6 @@ const getCocktails = (ingredients) => {
         })
 }
 
-// Pseudocode to format user input for the API
-// Convert string to lower case
-// Convert string to array with comma delimiter - .split(“,”)
-// For each element in the array, get rid of leading and trailing white space - .trim()
-// For each element in the array, replace any space with an underscore - .replace(“ “, “_”)
-// Convert the array back to a string
-const formatInput = (userInput) => {
-    const lowerCase = userInput.toLowerCase();
-    const inputArray = lowerCase.split(",");
-    const formattedArray = inputArray.map(i => i.trim());
-    const arrayWithUnderscores = formattedArray.map(i => i.replace(" ", "_"));
-    const formattedString = arrayWithUnderscores.toString();
-
-    return formattedString;
-}
-
-const formatPrevSearch = (text) => {
-
-    const searchToArray = text.split(",");
-    const formattedArray = searchToArray.map(i => i.replace("_", " "));
-    const spacesAfterCommasArray = () => {
-        let updatedArray = [];
-        updatedArray.push(formattedArray[0]);
-        for (let i = 1; i < formattedArray.length; i++) {
-            let element = formattedArray[i];
-            const updatedElement = " " + element;
-            updatedArray.push(updatedElement);
-            }
-        return updatedArray;
-    }
-    const finalArray = spacesAfterCommasArray();
-    const formattedText = finalArray.toString();
-    return formattedText;
-
-}
-
-
-
-
-
 // Function to handle page change in pagination
 const onPageChange = (event, pageInfo) => {
     console.log(pageInfo);
@@ -89,7 +45,6 @@ const onPageChange = (event, pageInfo) => {
     const startIndex = (activePage - 1)*7;
     setSomeCocktails(cocktails.slice(startIndex, startIndex + 6)); 
 }
-
 
 // Render - pass handleIngredient submit as props to the ingredient form component
 return(
@@ -99,7 +54,6 @@ return(
                  handleIngredientSubmit={handleIngredientSubmit} 
                  ingredients={ingredients} 
                  setIngredients={setIngredients} 
-                 formatInput={formatInput} 
                  prevSearch ={prevSearch} 
                  setPrevSearch ={setPrevSearch} /> 
                  
@@ -109,11 +63,9 @@ return(
                  prevSearch={prevSearch}
                  onPageChange={onPageChange}
                  pageCount={pageCount}
-                 loaded={loaded}
-                 formatPrevSearch={formatPrevSearch}/>
+                 loaded={loaded} />
      </>
 );
-
 }
 
 

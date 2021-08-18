@@ -2,28 +2,26 @@ package com.example.codeclan.server.services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class InputFormatter {
 
     public String formatInput(String input) {
         String lowerCaseInput = input.toLowerCase();
 
-        String[] inputList = lowerCaseInput.split(",");
-
-        ArrayList inputArrayList = new ArrayList<>();
-        inputArrayList.addAll(Arrays.asList(inputList));
+        List<String> inputList = Arrays.asList(lowerCaseInput.split(","));
 
         String finalInput = "";
-        for (int i = 0; i < inputArrayList.size(); i++) {
-            finalInput += formatIndividualWord(inputArrayList.get(i));
-            if (i < inputArrayList.size() - 1){
+        for (int i = 0; i < inputList.size(); i++) {
+            finalInput += formatIndividualWord(inputList.get(i));
+            if (i < inputList.size() - 1){
                 finalInput += ",";
             }
         }
         return finalInput;
     }
 
-    private String formatIndividualWord(Object word) {
-        return word.toString().trim().replace(" ", "_");
+    private String formatIndividualWord(String word) {
+        return word.trim().replace(" ", "_");
     }
 }

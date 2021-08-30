@@ -1,15 +1,21 @@
 package com.example.codeclan.server.models;
 
+import java.util.ArrayList;
+
 public class Cocktail {
 
     private String strDrink;
     private String strDrinkThumb;
     private String idDrink;
+    private ArrayList<String> ingredients;
+    private ArrayList<String> measures;
 
-    public Cocktail(String strDrink, String strDrinkThumb, String idDrink) {
+    public Cocktail(String strDrink, String strDrinkThumb, String idDrink, ArrayList<String> ingredients, ArrayList<String> measures) {
         this.strDrink = strDrink;
         this.strDrinkThumb = strDrinkThumb;
         this.idDrink = idDrink;
+        this.ingredients = ingredients;
+        this.measures = measures;
     }
 
     public Cocktail(){

@@ -1,15 +1,24 @@
 package com.example.codeclan.server.models;
 
-public class Recipe {
-    private String idMeal;
-    private String meal;
-    private String drinkAlternate;
-    private String category;
-    private String area;
+public class CocktailRecipePayload {
+
+    private String idDrink;
+    private String strDrink;
+    private String strDrinkAlternate;
+    private String strTags;
+    private String strVideo;
+    private String strCategory;
+    private String strIBA;
+    private String strAlcoholic;
+    private String strGlass;
     private String instructions;
-    private String mealThumb;
-    private String tags;
-    private String youTube;
+    private String instructionsES;
+    private String instructionsDE;
+    private String instructionsFR;
+    private String instructionsIT;
+    private String strInstructionsZHHANS;
+    private String strInstructionsZHHANT;
+    private String strDrinkThumb;
     private String ingredient1;
     private String ingredient2;
     private String ingredient3;
@@ -25,11 +34,6 @@ public class Recipe {
     private String ingredient13;
     private String ingredient14;
     private String ingredient15;
-    private String ingredient16;
-    private String ingredient17;
-    private String ingredient18;
-    private String ingredient19;
-    private String ingredient20;
     private String measure1;
     private String measure2;
     private String measure3;
@@ -45,36 +49,31 @@ public class Recipe {
     private String measure13;
     private String measure14;
     private String measure15;
-    private String measure16;
-    private String measure17;
-    private String measure18;
-    private String measure19;
-    private String measure20;
-    private String source;
-    private String dateModified;
+    private String strImageSource;
+    private String strImageAttribution;
+    private String strCreativeCommonsConfirmed;
+    private String strDateModified;
 
-    public Recipe(String idMeal, String meal, String drinkAlternate, String category, String area,
-                  String instructions, String mealThumb, String tags, String youTube, String ingredient1,
-                  String ingredient2, String ingredient3, String ingredient4, String ingredient5,
-                  String ingredient6, String ingredient7, String ingredient8, String ingredient9,
-                  String ingredient10, String ingredient11, String ingredient12, String ingredient13,
-                  String ingredient14, String ingredient15, String ingredient16, String ingredient17,
-                  String ingredient18, String ingredient19, String ingredient20, String measure1,
-                  String measure2, String measure3, String measure4, String measure5, String measure6,
-                  String measure7, String measure8, String measure9, String measure10, String measure11,
-                  String measure12, String measure13, String measure14, String measure15, String measure16,
-                  String measure17, String measure18, String measure19, String measure20, String source,
-                  String dateModified) {
 
-        this.idMeal = idMeal;
-        this.meal = meal;
-        this.drinkAlternate = drinkAlternate;
-        this.category = category;
-        this.area = area;
+
+    public CocktailRecipePayload(String idDrink, String strDrink, String strDrinkAlternate, String strTags, String strVideo, String strCategory, String strIBA, String strAlcoholic, String strGlass, String instructions, String instructionsES, String instructionsDE, String instructionsFR, String instructionsIT, String strInstructionsZHHANS, String strInstructionsZHHANT, String strDrinkThumb, String ingredient1, String ingredient2, String ingredient3, String ingredient4, String ingredient5, String ingredient6, String ingredient7, String ingredient8, String ingredient9, String ingredient10, String ingredient11, String ingredient12, String ingredient13, String ingredient14, String ingredient15, String measure1, String measure2, String measure3, String measure4, String measure5, String measure6, String measure7, String measure8, String measure9, String measure10, String measure11, String measure12, String measure13, String measure14, String measure15, String strImageSource, String strImageAttribution, String strCreativeCommonsConfirmed, String strDateModified) {
+        this.idDrink = idDrink;
+        this.strDrink = strDrink;
+        this.strDrinkAlternate = strDrinkAlternate;
+        this.strTags = strTags;
+        this.strVideo = strVideo;
+        this.strCategory = strCategory;
+        this.strIBA = strIBA;
+        this.strAlcoholic = strAlcoholic;
+        this.strGlass = strGlass;
         this.instructions = instructions;
-        this.mealThumb = mealThumb;
-        this.tags = tags;
-        this.youTube = youTube;
+        this.instructionsES = instructionsES;
+        this.instructionsDE = instructionsDE;
+        this.instructionsFR = instructionsFR;
+        this.instructionsIT = instructionsIT;
+        this.strInstructionsZHHANS = strInstructionsZHHANS;
+        this.strInstructionsZHHANT = strInstructionsZHHANT;
+        this.strDrinkThumb = strDrinkThumb;
         this.ingredient1 = ingredient1;
         this.ingredient2 = ingredient2;
         this.ingredient3 = ingredient3;
@@ -90,11 +89,6 @@ public class Recipe {
         this.ingredient13 = ingredient13;
         this.ingredient14 = ingredient14;
         this.ingredient15 = ingredient15;
-        this.ingredient16 = ingredient16;
-        this.ingredient17 = ingredient17;
-        this.ingredient18 = ingredient18;
-        this.ingredient19 = ingredient19;
-        this.ingredient20 = ingredient20;
         this.measure1 = measure1;
         this.measure2 = measure2;
         this.measure3 = measure3;
@@ -110,58 +104,82 @@ public class Recipe {
         this.measure13 = measure13;
         this.measure14 = measure14;
         this.measure15 = measure15;
-        this.measure16 = measure16;
-        this.measure17 = measure17;
-        this.measure18 = measure18;
-        this.measure19 = measure19;
-        this.measure20 = measure20;
-        this.source = source;
-        this.dateModified = dateModified;
+        this.strImageSource = strImageSource;
+        this.strImageAttribution = strImageAttribution;
+        this.strCreativeCommonsConfirmed = strCreativeCommonsConfirmed;
+        this.strDateModified = strDateModified;
     }
 
-    
-    public Recipe() {
+    public String getIdDrink() {
+        return idDrink;
     }
 
-
-    public String getIdMeal() {
-        return idMeal;
+    public void setIdDrink(String idDrink) {
+        this.idDrink = idDrink;
     }
 
-    public void setIdMeal(String idMeal) {
-        this.idMeal = idMeal;
+    public String getStrDrink() {
+        return strDrink;
     }
 
-    public String getMeal() {
-        return meal;
+    public void setStrDrink(String strDrink) {
+        this.strDrink = strDrink;
     }
 
-    public void setMeal(String meal) {
-        this.meal = meal;
+    public String getStrDrinkAlternate() {
+        return strDrinkAlternate;
     }
 
-    public String getDrinkAlternate() {
-        return drinkAlternate;
+    public void setStrDrinkAlternate(String strDrinkAlternate) {
+        this.strDrinkAlternate = strDrinkAlternate;
     }
 
-    public void setDrinkAlternate(String drinkAlternate) {
-        this.drinkAlternate = drinkAlternate;
+    public String getStrTags() {
+        return strTags;
     }
 
-    public String getCategory() {
-        return category;
+    public void setStrTags(String strTags) {
+        this.strTags = strTags;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public String getStrVideo() {
+        return strVideo;
     }
 
-    public String getArea() {
-        return area;
+    public void setStrVideo(String strVideo) {
+        this.strVideo = strVideo;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public String getStrCategory() {
+        return strCategory;
+    }
+
+    public void setStrCategory(String strCategory) {
+        this.strCategory = strCategory;
+    }
+
+    public String getStrIBA() {
+        return strIBA;
+    }
+
+    public void setStrIBA(String strIBA) {
+        this.strIBA = strIBA;
+    }
+
+    public String getStrAlcoholic() {
+        return strAlcoholic;
+    }
+
+    public void setStrAlcoholic(String strAlcoholic) {
+        this.strAlcoholic = strAlcoholic;
+    }
+
+    public String getStrGlass() {
+        return strGlass;
+    }
+
+    public void setStrGlass(String strGlass) {
+        this.strGlass = strGlass;
     }
 
     public String getInstructions() {
@@ -172,28 +190,60 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public String getMealThumb() {
-        return mealThumb;
+    public String getInstructionsES() {
+        return instructionsES;
     }
 
-    public void setMealThumb(String mealThumb) {
-        this.mealThumb = mealThumb;
+    public void setInstructionsES(String instructionsES) {
+        this.instructionsES = instructionsES;
     }
 
-    public String getTags() {
-        return tags;
+    public String getInstructionsDE() {
+        return instructionsDE;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setInstructionsDE(String instructionsDE) {
+        this.instructionsDE = instructionsDE;
     }
 
-    public String getYouTube() {
-        return youTube;
+    public String getInstructionsFR() {
+        return instructionsFR;
     }
 
-    public void setYouTube(String youTube) {
-        this.youTube = youTube;
+    public void setInstructionsFR(String instructionsFR) {
+        this.instructionsFR = instructionsFR;
+    }
+
+    public String getInstructionsIT() {
+        return instructionsIT;
+    }
+
+    public void setInstructionsIT(String instructionsIT) {
+        this.instructionsIT = instructionsIT;
+    }
+
+    public String getStrInstructionsZHHANS() {
+        return strInstructionsZHHANS;
+    }
+
+    public void setStrInstructionsZHHANS(String strInstructionsZHHANS) {
+        this.strInstructionsZHHANS = strInstructionsZHHANS;
+    }
+
+    public String getStrInstructionsZHHANT() {
+        return strInstructionsZHHANT;
+    }
+
+    public void setStrInstructionsZHHANT(String strInstructionsZHHANT) {
+        this.strInstructionsZHHANT = strInstructionsZHHANT;
+    }
+
+    public String getStrDrinkThumb() {
+        return strDrinkThumb;
+    }
+
+    public void setStrDrinkThumb(String strDrinkThumb) {
+        this.strDrinkThumb = strDrinkThumb;
     }
 
     public String getIngredient1() {
@@ -316,46 +366,6 @@ public class Recipe {
         this.ingredient15 = ingredient15;
     }
 
-    public String getIngredient16() {
-        return ingredient16;
-    }
-
-    public void setIngredient16(String ingredient16) {
-        this.ingredient16 = ingredient16;
-    }
-
-    public String getIngredient17() {
-        return ingredient17;
-    }
-
-    public void setIngredient17(String ingredient17) {
-        this.ingredient17 = ingredient17;
-    }
-
-    public String getIngredient18() {
-        return ingredient18;
-    }
-
-    public void setIngredient18(String ingredient18) {
-        this.ingredient18 = ingredient18;
-    }
-
-    public String getIngredient19() {
-        return ingredient19;
-    }
-
-    public void setIngredient19(String ingredient19) {
-        this.ingredient19 = ingredient19;
-    }
-
-    public String getIngredient20() {
-        return ingredient20;
-    }
-
-    public void setIngredient20(String ingredient20) {
-        this.ingredient20 = ingredient20;
-    }
-
     public String getMeasure1() {
         return measure1;
     }
@@ -476,59 +486,42 @@ public class Recipe {
         this.measure15 = measure15;
     }
 
-    public String getMeasure16() {
-        return measure16;
+    public String getStrImageSource() {
+        return strImageSource;
     }
 
-    public void setMeasure16(String measure16) {
-        this.measure16 = measure16;
+    public void setStrImageSource(String strImageSource) {
+        this.strImageSource = strImageSource;
     }
 
-    public String getMeasure17() {
-        return measure17;
+    public String getStrImageAttribution() {
+        return strImageAttribution;
     }
 
-    public void setMeasure17(String measure17) {
-        this.measure17 = measure17;
+    public void setStrImageAttribution(String strImageAttribution) {
+        this.strImageAttribution = strImageAttribution;
     }
 
-    public String getMeasure18() {
-        return measure18;
+    public String getStrCreativeCommonsConfirmed() {
+        return strCreativeCommonsConfirmed;
     }
 
-    public void setMeasure18(String measure18) {
-        this.measure18 = measure18;
+    public void setStrCreativeCommonsConfirmed(String strCreativeCommonsConfirmed) {
+        this.strCreativeCommonsConfirmed = strCreativeCommonsConfirmed;
     }
 
-    public String getMeasure19() {
-        return measure19;
+    public String getStrDateModified() {
+        return strDateModified;
     }
 
-    public void setMeasure19(String measure19) {
-        this.measure19 = measure19;
+    public void setStrDateModified(String strDateModified) {
+        this.strDateModified = strDateModified;
     }
 
-    public String getMeasure20() {
-        return measure20;
-    }
 
-    public void setMeasure20(String measure20) {
-        this.measure20 = measure20;
-    }
 
-    public String getSource() {
-        return source;
-    }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
 
-    public String getDateModified() {
-        return dateModified;
-    }
-
-    public void setDateModified(String dateModified) {
-        this.dateModified = dateModified;
+    public CocktailRecipePayload() {
     }
 }

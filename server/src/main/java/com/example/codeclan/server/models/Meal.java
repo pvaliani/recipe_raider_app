@@ -9,6 +9,22 @@ public class Meal {
     private ArrayList<String> ingredients;
     private ArrayList<String> measures;
 
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public ArrayList<String> getMeasures() {
+        return measures;
+    }
+
+    public void setMeasures(ArrayList<String> measures) {
+        this.measures = measures;
+    }
+
     public Meal(String strMeal, String strMealThumb, String idMeal, ArrayList<String> ingredients, ArrayList<String> measures) {
         this.strMeal = strMeal;
         this.strMealThumb = strMealThumb;

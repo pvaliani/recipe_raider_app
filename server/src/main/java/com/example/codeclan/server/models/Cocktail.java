@@ -10,6 +10,22 @@ public class Cocktail {
     private ArrayList<String> ingredients;
     private ArrayList<String> measures;
 
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public ArrayList<String> getMeasures() {
+        return measures;
+    }
+
+    public void setMeasures(ArrayList<String> measures) {
+        this.measures = measures;
+    }
+
     public Cocktail(String strDrink, String strDrinkThumb, String idDrink, ArrayList<String> ingredients, ArrayList<String> measures) {
         this.strDrink = strDrink;
         this.strDrinkThumb = strDrinkThumb;

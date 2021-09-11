@@ -1,16 +1,12 @@
 package com.example.codeclan.server;
 
 import com.example.codeclan.server.apis.MealAPI;
-import com.example.codeclan.server.models.MealRecipePayload;
 import com.example.codeclan.server.services.LRUCache;
-import com.example.codeclan.server.services.MealConverter;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;

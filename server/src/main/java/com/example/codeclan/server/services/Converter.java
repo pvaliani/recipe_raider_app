@@ -1,5 +1,6 @@
 package com.example.codeclan.server.services;
 
+import com.example.codeclan.server.models.CocktailRecipePayload;
 import com.example.codeclan.server.models.Meal;
 import com.example.codeclan.server.models.MealRecipePayload;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -10,12 +11,19 @@ import java.io.DataInput;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MealConverter {
+public class Converter {
 
     public MealRecipePayload convertMealJsonNodeToRecipePayload(JsonNode mealRecipeNode) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         MealRecipePayload mealRecipePayload = mapper.convertValue(mealRecipeNode, MealRecipePayload.class);
         return mealRecipePayload;
+    }
+
+    public CocktailRecipePayload convertJsonNodeToCocktailRecipePayload(JsonNode cocktailRecipeNode) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        CocktailRecipePayload cocktailRecipePayload = mapper.convertValue(cocktailRecipeNode, CocktailRecipePayload.class);
+        return cocktailRecipePayload;
     }
 
     //public ArrayList<Meal> convertMealRecipePayloadsToMeals(ArrayList<MealRecipePayload> mealRecipePayloads) {

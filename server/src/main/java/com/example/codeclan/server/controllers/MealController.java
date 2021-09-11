@@ -2,6 +2,7 @@ package com.example.codeclan.server.controllers;
 
 
 import com.example.codeclan.server.apis.MealAPI;
+import com.example.codeclan.server.models.CocktailRecipePayload;
 import com.example.codeclan.server.models.MealRecipePayload;
 import com.example.codeclan.server.services.Converter;
 import com.example.codeclan.server.services.InputFormatter;
@@ -21,13 +22,15 @@ import java.util.Map;
 public class MealController {
 
     private Map<String, List<MealRecipePayload>> cache;
-    private Map<String, List<JsonNode>> cocktailCache;
+    private Map<String, List<CocktailRecipePayload>> cocktailCache;
     private InputFormatter inputFormatter;
+    private Converter converter;
 
     public MealController() {
         this.cache = new LRUCache<>(6);
         this.cocktailCache = new LRUCache<>(6);
         this.inputFormatter = new InputFormatter();
+        this.converter = new Converter();
     }
 
     @Autowired
@@ -40,7 +43,6 @@ public class MealController {
 
     @GetMapping (value="/api/meals/{ingredients}")
     public List<MealRecipePayload> getMealsFromApi(@PathVariable String ingredients) throws IOException {
-        Converter converter = new Converter();
         String formattedMealIngredients = inputFormatter.formatInput(ingredients);
         if(cache.containsKey(formattedMealIngredients) == true) {
             return cache.get(formattedMealIngredients);
@@ -64,25 +66,25 @@ public class MealController {
 
 //    COCKTAILS START HERE!
     @GetMapping (value="/api/cocktails/{ingredients}")
-    public List<JsonNode> getCocktailsFromApi(@PathVariable String ingredients) {
+    public List<CocktailRecipePayload> getCocktailsFromApi(@PathVariable String ingredients) throws IOException {
         String formattedCocktailIngredients = inputFormatter.formatInput(ingredients);
         if(cocktailCache.containsKey(formattedCocktailIngredients) == true) {
             return cocktailCache.get(formattedCocktailIngredients);
         }
 
         JsonNode foundCocktails = mealAPI.getCocktails(formattedCocktailIngredients);
-        List<JsonNode> cocktailRecipeNodes = new ArrayList<>();
+        List<CocktailRecipePayload> cocktailRecipes = new ArrayList<>();
 
         for (JsonNode node:foundCocktails) {
             JsonNode cocktailNode = node.get("idDrink");
             int cocktailId = cocktailNode.asInt();
-            cocktailRecipeNodes.add(mealAPI.getCocktail(Integer.toString(cocktailId)));
+            cocktailRecipes.add(converter.convertJsonNodeToCocktailRecipePayload(mealAPI.getCocktail(Integer.toString(cocktailId))));
         }
 
-        if (cocktailRecipeNodes.size() > 0) {
-            cocktailCache.put(formattedCocktailIngredients, cocktailRecipeNodes);
+        if (cocktailRecipes.size() > 0) {
+            cocktailCache.put(formattedCocktailIngredients, cocktailRecipes);
         }
 
-        return cocktailRecipeNodes;
+        return cocktailRecipes;
     }
 }

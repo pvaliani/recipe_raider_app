@@ -2,6 +2,8 @@ package com.example.codeclan.server.controllers;
 
 
 import com.example.codeclan.server.apis.MealAPI;
+import com.example.codeclan.server.models.MealRecipePayload;
+import com.example.codeclan.server.services.Converter;
 import com.example.codeclan.server.services.InputFormatter;
 import com.example.codeclan.server.services.LRUCache;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +20,7 @@ import java.util.Map;
 @RestController
 public class MealController {
 
-    private Map<String, List<JsonNode>> cache;
+    private Map<String, List<MealRecipePayload>> cache;
     private Map<String, List<JsonNode>> cocktailCache;
     private InputFormatter inputFormatter;
 
@@ -36,26 +39,27 @@ public class MealController {
 
 
     @GetMapping (value="/api/meals/{ingredients}")
-    public List<JsonNode> getMealsFromApi(@PathVariable String ingredients) {
+    public List<MealRecipePayload> getMealsFromApi(@PathVariable String ingredients) throws IOException {
+        Converter converter = new Converter();
         String formattedMealIngredients = inputFormatter.formatInput(ingredients);
         if(cache.containsKey(formattedMealIngredients) == true) {
             return cache.get(formattedMealIngredients);
         }
 
         JsonNode foundMeals = mealAPI.getMeals(formattedMealIngredients);
-        List<JsonNode> recipeNodes = new ArrayList<>();
+        List<MealRecipePayload> mealRecipes = new ArrayList<>();
 
         for (JsonNode node:foundMeals) {
           JsonNode recipeNode = node.get("idMeal");
           int recipeId = recipeNode.asInt();
-          recipeNodes.add(mealAPI.getRecipe(Integer.toString(recipeId)));
+          mealRecipes.add(converter.convertMealJsonNodeToRecipePayload(mealAPI.getRecipe(Integer.toString(recipeId))));
         }
 
-        if (recipeNodes.size() > 0) {
-            cache.put(formattedMealIngredients, recipeNodes);
+        if (mealRecipes.size() > 0) {
+            cache.put(formattedMealIngredients, mealRecipes);
         }
 
-        return recipeNodes;
+        return mealRecipes;
     }
 
 //    COCKTAILS START HERE!

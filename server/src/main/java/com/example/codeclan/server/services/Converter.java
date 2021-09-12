@@ -42,43 +42,51 @@ public class Converter {
 
         ArrayList<Meal> meals = new ArrayList<>();
         for (MealRecipePayload mealRecipePayload: mealRecipePayloads) {
-            ArrayList<String> ingredients = new ArrayList<>();
-            ArrayList<String> measures = new ArrayList<>();
-
-            getMealIngredientsAndMeasures(1, 21, ingredients, measures, mealRecipePayload);
-
-            Meal mealToAdd = new Meal(mealRecipePayload.getStrMeal(), mealRecipePayload.getStrMealThumb(), mealRecipePayload.getIdMeal(),
-                    mealRecipePayload.getStrArea(), ingredients, measures);
-
-            meals.add(mealToAdd);
+            Meal meal = convertIndividualMealRecipePayloadToMeal(mealRecipePayload);
+            meals.add(meal);
         }
 
         return meals;
     }
 
-    public String getValueFromField(MealRecipePayload mealRecipePayload, String fieldName, String numberString) throws NoSuchFieldException, IllegalAccessException {
+    public Meal convertIndividualMealRecipePayloadToMeal(MealRecipePayload mealRecipePayload) throws NoSuchFieldException, IllegalAccessException {
+        ArrayList<String> ingredients = new ArrayList<>();
+        ArrayList<String> measures = new ArrayList<>();
+
+        getMealIngredientsAndMeasures(1, 21, ingredients, measures, mealRecipePayload);
+
+        Meal meal = new Meal(mealRecipePayload.getStrMeal(), mealRecipePayload.getStrMealThumb(), mealRecipePayload.getIdMeal(),
+                mealRecipePayload.getStrArea(), ingredients, measures);
+
+        return meal;
+    }
+
+    private String getValueFromField(MealRecipePayload mealRecipePayload, String fieldName, String numberString) throws NoSuchFieldException, IllegalAccessException {
         Field field = mealRecipePayload.getClass().getDeclaredField(fieldName + numberString);
         field.setAccessible(true);
         Object value = field.get(mealRecipePayload);
-        String valueString = value.toString();
+        String valueString = "";
+        if (value != null){
+            valueString = value.toString();
+        }
         return valueString;
     }
 
-    public void getMealIngredientsAndMeasures(Integer startValue, Integer endValue, ArrayList<String> ingredientsList,
+    private void getMealIngredientsAndMeasures(Integer startValue, Integer endValue, ArrayList<String> ingredientsList,
                                           ArrayList<String> measuresList, MealRecipePayload mealRecipePayload) throws NoSuchFieldException,
             IllegalAccessException {
         for (int i = startValue; i < endValue; i ++) {
             String iString = Integer.toString(i);
 
-            String ingredientString = getValueFromField(mealRecipePayload, "strIngredient", iString);
+            String ingredientString = getValueFromField(mealRecipePayload, "strIngredient", iString).trim();
 
-            if (ingredientString != null && ingredientString != "") {
+            if (!ingredientString.isEmpty()) {
                 ingredientsList.add(ingredientString);
             }
 
-            String measureString = getValueFromField(mealRecipePayload, "strMeasure", iString);
+            String measureString = getValueFromField(mealRecipePayload, "strMeasure", iString).trim();
 
-            if (measureString != null && measureString != "") {
+            if (!measureString.isEmpty()) {
                 measuresList.add(measureString);
             }
         }

@@ -3,6 +3,7 @@ package com.example.codeclan.server.controllers;
 
 import com.example.codeclan.server.apis.MealAPI;
 import com.example.codeclan.server.models.CocktailRecipePayload;
+import com.example.codeclan.server.models.Meal;
 import com.example.codeclan.server.models.MealRecipePayload;
 import com.example.codeclan.server.services.Converter;
 import com.example.codeclan.server.services.InputFormatter;
@@ -21,7 +22,7 @@ import java.util.Map;
 @RestController
 public class MealController {
 
-    private Map<String, List<MealRecipePayload>> cache;
+    private Map<String, List<Meal>> cache;
     private Map<String, List<CocktailRecipePayload>> cocktailCache;
     private InputFormatter inputFormatter;
     private Converter converter;
@@ -42,7 +43,7 @@ public class MealController {
 
 
     @GetMapping (value="/api/meals/{ingredients}")
-    public List<MealRecipePayload> getMealsFromApi(@PathVariable String ingredients) throws IOException {
+    public List<Meal> getMealsFromApi(@PathVariable String ingredients) throws IOException, NoSuchFieldException, IllegalAccessException {
         String formattedMealIngredients = inputFormatter.formatInput(ingredients);
         if(cache.containsKey(formattedMealIngredients) == true) {
             return cache.get(formattedMealIngredients);
@@ -56,12 +57,14 @@ public class MealController {
           int recipeId = recipeNode.asInt();
           mealRecipes.add(converter.convertMealJsonNodeToRecipePayload(mealAPI.getRecipe(Integer.toString(recipeId))));
         }
+        
+        List<Meal> formattedMeals = converter.convertMealRecipePayloadsToMeals(mealRecipes);
 
-        if (mealRecipes.size() > 0) {
-            cache.put(formattedMealIngredients, mealRecipes);
+        if (formattedMeals.size() > 0) {
+            cache.put(formattedMealIngredients, formattedMeals);
         }
 
-        return mealRecipes;
+        return formattedMeals;
     }
 
 //    COCKTAILS START HERE!

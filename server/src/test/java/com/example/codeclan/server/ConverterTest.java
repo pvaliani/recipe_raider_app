@@ -47,6 +47,14 @@ public class ConverterTest {
         assertEquals(3, meals.size());
     }
 
+    @Test
+    public void canConvertIndividualMealPayloadtoMeal() throws IOException, NoSuchFieldException, IllegalAccessException {
+        Converter converter = new Converter();
+        MealRecipePayload testRecipe = getIndividualMealRecipePayloadToTest("chicken, onion");
+        Meal result = converter.convertIndividualMealRecipePayloadToMeal(testRecipe);
+        assertTrue(result instanceof Meal);
+    }
+
     public List<MealRecipePayload> getMealRecipePayloadsToTest(String ingredients) throws IOException {
         InputFormatter inputFormatter = new InputFormatter();
         Converter converter = new Converter();
@@ -62,5 +70,24 @@ public class ConverterTest {
         }
 
         return mealRecipes;
+    }
+
+    public MealRecipePayload getIndividualMealRecipePayloadToTest(String ingredients) throws IOException {
+        InputFormatter inputFormatter = new InputFormatter();
+        Converter converter = new Converter();
+        String formattedMealIngredients = inputFormatter.formatInput(ingredients);
+        ArrayList<MealRecipePayload> mealRecipes = new ArrayList<>();
+
+        JsonNode foundMeals = mealAPI.getMeals(formattedMealIngredients);
+
+        for (JsonNode node:foundMeals) {
+            JsonNode recipeNode = node.get("idMeal");
+            int recipeId = recipeNode.asInt();
+            mealRecipes.add(converter.convertMealJsonNodeToRecipePayload(mealAPI.getRecipe(Integer.toString(recipeId))));
+        }
+
+        MealRecipePayload testRecipe = mealRecipes.get(0);
+
+        return testRecipe;
     }
 }

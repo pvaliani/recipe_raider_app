@@ -12,7 +12,9 @@ public class InputFormatterTest {
         InputFormatter inputFormatter = new InputFormatter();
         String formattedInput = inputFormatter.formatInput("Chicken, Cheese, Beef");
         String formattedInput2 = inputFormatter.formatInput("Chicken livers, Tomato sauce, Strawberry sauce");
+        String formattedInput3 = inputFormatter.formatInput("cheese");
         assertEquals("chicken,cheese,beef", formattedInput);
         assertEquals("chicken_livers,tomato_sauce,strawberry_sauce", formattedInput2);
+        assertEquals("cheese", formattedInput3);
     }
 }

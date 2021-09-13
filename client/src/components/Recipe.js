@@ -5,29 +5,19 @@ function Recipe({recipe}) {
 
   console.log(recipe);
   
-
-  
     let ingredientsList = []
-  
+
     const displayIngredients = () => {
-      let values = []
-
-      Object.keys(recipe).forEach((k, i) => { 
-        values.push(recipe[k]) });
-      
-      for (let i = 29; i < values.length - 4; i++) { 
-        if (values[i] !== null && values[i] !== "") { 
-          const element = values[i] + " " + values[i-20]; 
-          ingredientsList.push(element); } 
-        }
-
-      return ingredientsList;
+      for (let i = 0; i < recipe.ingredients.length; i++) {
+        const element = recipe.measures[i] + " " + recipe.ingredients[i];
+        ingredientsList.push(element);
+      }
     }
 
      
   
   //  Call the displayIngredients method 
-    displayIngredients();
+  displayIngredients();
   
   //  Map the ingredients to an ingredientsList and return the result as a list item in JSX to a component prop at the bottom
   

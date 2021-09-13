@@ -6,8 +6,6 @@ import com.example.codeclan.server.models.MealRecipePayload;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.DataInput;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -29,17 +27,6 @@ public class Converter {
     }
 
     public ArrayList<Meal> convertMealRecipePayloadsToMeals(List<MealRecipePayload> mealRecipePayloads) throws NoSuchFieldException, IllegalAccessException {
-        // 1. Create an empty Meal ArrayList
-        // 2. Loop over every item in the mealRecipePayloads ArrayList
-        // 3. Create ArrayLists for ingredients and measures
-        // 4. Create a custom for loop starting at 1 and ending at 20
-        // 5. Cast the int as String and concatenate it with ingredient? Or do I need to iterate over the object keys
-        // and see whether it equals ingredient1, etc.?
-        // 6. Get the ingredient - if it isn't null or an empty string, add it to the ingredients ArrayList
-        // 7. Repeat steps 4-6 for measures
-        // 8. Create a new meal object, getting the relevant properties from the MealRecipePayload object
-        // 9. Add the Meal to the Meal ArrayList
-
         ArrayList<Meal> meals = new ArrayList<>();
         for (MealRecipePayload mealRecipePayload: mealRecipePayloads) {
             Meal meal = convertIndividualMealRecipePayloadToMeal(mealRecipePayload);
@@ -56,7 +43,7 @@ public class Converter {
         getMealIngredientsAndMeasures(1, 21, ingredients, measures, mealRecipePayload);
 
         Meal meal = new Meal(mealRecipePayload.getStrMeal(), mealRecipePayload.getStrMealThumb(), mealRecipePayload.getIdMeal(),
-                mealRecipePayload.getStrArea(), ingredients, measures);
+                mealRecipePayload.getStrArea(), mealRecipePayload.getStrInstructions(), ingredients, measures);
 
         return meal;
     }

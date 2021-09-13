@@ -16,6 +16,7 @@ public class Meal {
     private String strMealThumb;
     private String idMeal;
     private String strArea;
+    private String strInstructions;
     private ArrayList<String> ingredients;
     private ArrayList<String> measures;
 }

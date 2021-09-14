@@ -23,7 +23,7 @@ function AboutPage(){
             </p>
             <p>Make a Night of It does the same thing with the CocktailDB API. But for your drinks cabinet.</p>
             <p>
-                <a className="gitHub" href='https://github.com/pvaliani'> Pedram</a> , <a className="gitHub" href='https://github.com/lauracdobie'> Laura</a> and <a className="gitHub" href='https://github.com/Knichols02'>Kirsten </a> made Make a Meal of It and Make a Night of it. You can check out our other projects at: 
+                <a className="gitHub" href='https://github.com/pvaliani'> Pedram</a> , <a className="gitHub" href='https://github.com/lauracdobie'> Laura</a> and <a className="gitHub" href='https://github.com/Knichols02'>Kirsten </a> made Make a Meal of It and Make a Night of it. You can check out our other projects on GitHub. 
                 
             </p>
             <p className="aboutImages">

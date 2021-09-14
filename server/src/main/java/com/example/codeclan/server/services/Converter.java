@@ -1,5 +1,6 @@
 package com.example.codeclan.server.services;
 
+import com.example.codeclan.server.models.Cocktail;
 import com.example.codeclan.server.models.CocktailRecipePayload;
 import com.example.codeclan.server.models.Meal;
 import com.example.codeclan.server.models.MealRecipePayload;
@@ -48,10 +49,44 @@ public class Converter {
         return meal;
     }
 
+    public Cocktail convertIndividualCocktailRecipePayloadToCocktail(CocktailRecipePayload cocktailRecipePayload) throws NoSuchFieldException, IllegalAccessException {
+        ArrayList<String> ingredients = new ArrayList<>();
+        ArrayList<String> measures = new ArrayList<>();
+
+        getCocktailIngredientsAndMeasures(1, 15, ingredients, measures, cocktailRecipePayload);
+
+        Cocktail cocktail = new Cocktail(cocktailRecipePayload.getStrDrink(), cocktailRecipePayload.getStrDrinkThumb(),
+                cocktailRecipePayload.getIdDrink(), cocktailRecipePayload.getStrInstructions(), cocktailRecipePayload.getStrCategory(), cocktailRecipePayload.getStrAlcoholic(), ingredients, measures);
+
+        return cocktail;
+    }
+
+    public List<Cocktail> convertCocktailRecipePayloadsToCocktails(List<CocktailRecipePayload> cocktailRecipePayloads) throws NoSuchFieldException, IllegalAccessException {
+        ArrayList<Cocktail> cocktails = new ArrayList<>();
+
+        for (CocktailRecipePayload cocktailRecipePayload: cocktailRecipePayloads) {
+            Cocktail cocktail = convertIndividualCocktailRecipePayloadToCocktail(cocktailRecipePayload);
+            cocktails.add(cocktail);
+        }
+
+        return cocktails;
+    }
+
     private String getValueFromField(MealRecipePayload mealRecipePayload, String fieldName, String numberString) throws NoSuchFieldException, IllegalAccessException {
         Field field = mealRecipePayload.getClass().getDeclaredField(fieldName + numberString);
         field.setAccessible(true);
         Object value = field.get(mealRecipePayload);
+        String valueString = "";
+        if (value != null){
+            valueString = value.toString();
+        }
+        return valueString;
+    }
+
+    private String getValueFromField(CocktailRecipePayload cocktailRecipePayload, String fieldName, String numberString) throws NoSuchFieldException, IllegalAccessException {
+        Field field = cocktailRecipePayload.getClass().getDeclaredField(fieldName + numberString);
+        field.setAccessible(true);
+        Object value = field.get(cocktailRecipePayload);
         String valueString = "";
         if (value != null){
             valueString = value.toString();
@@ -72,6 +107,26 @@ public class Converter {
             }
 
             String measureString = getValueFromField(mealRecipePayload, "strMeasure", iString).trim();
+
+            if (!measureString.isEmpty()) {
+                measuresList.add(measureString);
+            }
+        }
+    }
+
+    private void getCocktailIngredientsAndMeasures(Integer startValue, Integer endValue, ArrayList<String> ingredientsList,
+                                               ArrayList<String> measuresList, CocktailRecipePayload cocktailRecipePayload) throws NoSuchFieldException,
+            IllegalAccessException {
+        for (int i = startValue; i < endValue; i ++) {
+            String iString = Integer.toString(i);
+
+            String ingredientString = getValueFromField(cocktailRecipePayload, "strIngredient", iString).trim();
+
+            if (!ingredientString.isEmpty()) {
+                ingredientsList.add(ingredientString);
+            }
+
+            String measureString = getValueFromField(cocktailRecipePayload, "strMeasure", iString).trim();
 
             if (!measureString.isEmpty()) {
                 measuresList.add(measureString);

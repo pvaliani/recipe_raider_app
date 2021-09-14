@@ -1,7 +1,7 @@
 import CocktailList from '../components/CocktailList';
 import CocktailIngredientForm from '../components/CocktailIngredientForm';
 import AppHeader from '../components/AppHeader';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function CocktailContainer() {
 

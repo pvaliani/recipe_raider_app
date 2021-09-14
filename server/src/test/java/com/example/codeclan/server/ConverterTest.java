@@ -1,6 +1,7 @@
 package com.example.codeclan.server;
 
 import com.example.codeclan.server.apis.MealAPI;
+import com.example.codeclan.server.models.Cocktail;
 import com.example.codeclan.server.models.CocktailRecipePayload;
 import com.example.codeclan.server.models.Meal;
 import com.example.codeclan.server.models.MealRecipePayload;
@@ -55,6 +56,14 @@ public class ConverterTest {
         assertTrue(result instanceof Meal);
     }
 
+    @Test
+    public void canConvertListOfCocktailPayloadsToCocktails() throws IOException, NoSuchFieldException, IllegalAccessException {
+        List<CocktailRecipePayload> cocktailRecipePayloads = getCocktailRecipePayloadsToTest("gin, vodka");
+        Converter converter = new Converter();
+        List<Cocktail> cocktails = converter.convertCocktailRecipePayloadsToCocktails(cocktailRecipePayloads);
+        assertTrue(cocktails.get(0) instanceof Cocktail);
+    }
+
     public List<MealRecipePayload> getMealRecipePayloadsToTest(String ingredients) throws IOException {
         InputFormatter inputFormatter = new InputFormatter();
         Converter converter = new Converter();
@@ -72,7 +81,24 @@ public class ConverterTest {
         return mealRecipes;
     }
 
-    public MealRecipePayload getIndividualMealRecipePayloadToTest(String ingredients) throws IOException {
+    private List<CocktailRecipePayload> getCocktailRecipePayloadsToTest(String ingredients) throws IOException {
+        InputFormatter inputFormatter = new InputFormatter();
+        Converter converter = new Converter();
+        String formattedCocktailIngredients = inputFormatter.formatInput(ingredients);
+        ArrayList<CocktailRecipePayload> cocktailRecipes = new ArrayList<>();
+
+        JsonNode foundCocktails = mealAPI.getCocktails(formattedCocktailIngredients);
+
+        for (JsonNode node:foundCocktails) {
+            JsonNode recipeNode = node.get("idDrink");
+            int recipeId = recipeNode.asInt();
+            cocktailRecipes.add(converter.convertJsonNodeToCocktailRecipePayload(mealAPI.getCocktail(Integer.toString(recipeId))));
+        }
+
+        return cocktailRecipes;
+    }
+
+    private MealRecipePayload getIndividualMealRecipePayloadToTest(String ingredients) throws IOException {
         InputFormatter inputFormatter = new InputFormatter();
         Converter converter = new Converter();
         String formattedMealIngredients = inputFormatter.formatInput(ingredients);
@@ -89,5 +115,24 @@ public class ConverterTest {
         MealRecipePayload testRecipe = mealRecipes.get(0);
 
         return testRecipe;
+    }
+
+    private CocktailRecipePayload getIndividualCocktailRecipePayloadToTest(String ingredients) throws IOException {
+        InputFormatter inputFormatter = new InputFormatter();
+        Converter converter = new Converter();
+        String formattedCocktailIngredients = inputFormatter.formatInput(ingredients);
+        ArrayList<CocktailRecipePayload> cocktailRecipes = new ArrayList<>();
+
+        JsonNode foundCocktails = mealAPI.getCocktails(formattedCocktailIngredients);
+
+        for (JsonNode node:foundCocktails) {
+            JsonNode recipeNode = node.get("idDrink");
+            int recipeId = recipeNode.asInt();
+            cocktailRecipes.add(converter.convertJsonNodeToCocktailRecipePayload(mealAPI.getCocktail(Integer.toString(recipeId))));
+        }
+
+        CocktailRecipePayload testCocktail = cocktailRecipes.get(0);
+
+        return testCocktail;
     }
 }

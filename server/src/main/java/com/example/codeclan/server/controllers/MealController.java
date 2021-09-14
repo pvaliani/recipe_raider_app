@@ -2,6 +2,7 @@ package com.example.codeclan.server.controllers;
 
 
 import com.example.codeclan.server.apis.MealAPI;
+import com.example.codeclan.server.models.Cocktail;
 import com.example.codeclan.server.models.CocktailRecipePayload;
 import com.example.codeclan.server.models.Meal;
 import com.example.codeclan.server.models.MealRecipePayload;
@@ -23,7 +24,7 @@ import java.util.Map;
 public class MealController {
 
     private Map<String, List<Meal>> cache;
-    private Map<String, List<CocktailRecipePayload>> cocktailCache;
+    private Map<String, List<Cocktail>> cocktailCache;
     private InputFormatter inputFormatter;
     private Converter converter;
 
@@ -69,7 +70,7 @@ public class MealController {
 
 //    COCKTAILS START HERE!
     @GetMapping (value="/api/cocktails/{ingredients}")
-    public List<CocktailRecipePayload> getCocktailsFromApi(@PathVariable String ingredients) throws IOException {
+    public List<Cocktail> getCocktailsFromApi(@PathVariable String ingredients) throws IOException, NoSuchFieldException, IllegalAccessException {
         String formattedCocktailIngredients = inputFormatter.formatInput(ingredients);
         if(cocktailCache.containsKey(formattedCocktailIngredients) == true) {
             return cocktailCache.get(formattedCocktailIngredients);
@@ -84,10 +85,12 @@ public class MealController {
             cocktailRecipes.add(converter.convertJsonNodeToCocktailRecipePayload(mealAPI.getCocktail(Integer.toString(cocktailId))));
         }
 
+        List<Cocktail> formattedCocktailRecipes = converter.convertCocktailRecipePayloadsToCocktails(cocktailRecipes);
+
         if (cocktailRecipes.size() > 0) {
-            cocktailCache.put(formattedCocktailIngredients, cocktailRecipes);
+            cocktailCache.put(formattedCocktailIngredients, formattedCocktailRecipes);
         }
 
-        return cocktailRecipes;
+        return formattedCocktailRecipes;
     }
 }

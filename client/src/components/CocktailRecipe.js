@@ -5,27 +5,13 @@ function CocktailRecipe({cocktailRecipe}) {
 
   console.log(cocktailRecipe);
   
-    //Create an empty array
-    //If the quantity is not null or blank, and the ingredient is not null or blank, combine the two together in a string and add them to the array.
-    //Loop over all the elements in the array and create a JSX element for them
-    //Insert this into the return
-  
     let ingredientsList = []
   
     const displayIngredients = () => {
-      let values = []
-
-      Object.keys(cocktailRecipe).forEach((k, i) => { 
-        values.push(cocktailRecipe[k]) });
-      
-      for (let i = 32; i < values.length - 4; i++) { 
-        if (values[i] !== null && values[i] !== "") { 
-          const element = values[i] + " " + values[i-15]; 
-          ingredientsList.push(element); } 
-        }
-
-      return ingredientsList;
-  
+      for (let i = 0; i < cocktailRecipe.ingredients.length; i++) {
+        const element = cocktailRecipe.measures[i] + " " + cocktailRecipe.ingredients[i];
+        ingredientsList.push(element);
+      }
     }
   
   //  Call the displayIngredients method 

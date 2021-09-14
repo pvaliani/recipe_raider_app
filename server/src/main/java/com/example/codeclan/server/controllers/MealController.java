@@ -11,6 +11,8 @@ import com.example.codeclan.server.services.InputFormatter;
 import com.example.codeclan.server.services.LRUCache;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,10 +46,11 @@ public class MealController {
 
 
     @GetMapping (value="/api/meals/{ingredients}")
-    public List<Meal> getMealsFromApi(@PathVariable String ingredients) throws IOException, NoSuchFieldException, IllegalAccessException {
+    public ResponseEntity<List<Meal>> getMealsFromApi(@PathVariable String ingredients) throws IOException, NoSuchFieldException, IllegalAccessException {
         String formattedMealIngredients = inputFormatter.formatInput(ingredients);
         if(cache.containsKey(formattedMealIngredients) == true) {
-            return cache.get(formattedMealIngredients);
+            List<Meal> mealsToReturn = cache.get(formattedMealIngredients);
+            return new ResponseEntity<>(mealsToReturn, HttpStatus.OK);
         }
 
         JsonNode foundMeals = mealAPI.getMeals(formattedMealIngredients);
@@ -65,15 +68,16 @@ public class MealController {
             cache.put(formattedMealIngredients, formattedMeals);
         }
 
-        return formattedMeals;
+        return new ResponseEntity<>(formattedMeals, HttpStatus.OK);
     }
 
 //    COCKTAILS START HERE!
     @GetMapping (value="/api/cocktails/{ingredients}")
-    public List<Cocktail> getCocktailsFromApi(@PathVariable String ingredients) throws IOException, NoSuchFieldException, IllegalAccessException {
+    public ResponseEntity<List<Cocktail>> getCocktailsFromApi(@PathVariable String ingredients) throws IOException, NoSuchFieldException, IllegalAccessException {
         String formattedCocktailIngredients = inputFormatter.formatInput(ingredients);
         if(cocktailCache.containsKey(formattedCocktailIngredients) == true) {
-            return cocktailCache.get(formattedCocktailIngredients);
+            List<Cocktail> cocktailsToReturn = cocktailCache.get(formattedCocktailIngredients);
+            return new ResponseEntity<>(cocktailsToReturn, HttpStatus.OK);
         }
 
         JsonNode foundCocktails = mealAPI.getCocktails(formattedCocktailIngredients);
@@ -92,6 +96,6 @@ public class MealController {
             cocktailCache.put(formattedCocktailIngredients, formattedCocktailRecipes);
         }
 
-        return formattedCocktailRecipes;
+        return new ResponseEntity<>(formattedCocktailRecipes, HttpStatus.OK);
     }
 }

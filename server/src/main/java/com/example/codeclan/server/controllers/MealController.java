@@ -51,15 +51,15 @@ public class MealController {
         }
 
         JsonNode foundMeals = mealAPI.getMeals(formattedMealIngredients);
-        List<MealRecipePayload> mealRecipes = new ArrayList<>();
+        ArrayList<Meal> formattedMeals = new ArrayList<>();
 
         for (JsonNode node:foundMeals) {
           JsonNode recipeNode = node.get("idMeal");
           int recipeId = recipeNode.asInt();
-          mealRecipes.add(converter.convertMealJsonNodeToRecipePayload(mealAPI.getRecipe(Integer.toString(recipeId))));
+          MealRecipePayload mealToConvert = converter.convertMealJsonNodeToRecipePayload(mealAPI.getRecipe(Integer.toString(recipeId)));
+          Meal mealToAdd = converter.convertIndividualMealRecipePayloadToMeal(mealToConvert);
+          formattedMeals.add(mealToAdd);
         }
-        
-        List<Meal> formattedMeals = converter.convertMealRecipePayloadsToMeals(mealRecipes);
 
         if (formattedMeals.size() > 0) {
             cache.put(formattedMealIngredients, formattedMeals);
@@ -78,14 +78,15 @@ public class MealController {
 
         JsonNode foundCocktails = mealAPI.getCocktails(formattedCocktailIngredients);
         List<CocktailRecipePayload> cocktailRecipes = new ArrayList<>();
+        List<Cocktail> formattedCocktailRecipes = new ArrayList<>();
 
         for (JsonNode node:foundCocktails) {
             JsonNode cocktailNode = node.get("idDrink");
             int cocktailId = cocktailNode.asInt();
-            cocktailRecipes.add(converter.convertJsonNodeToCocktailRecipePayload(mealAPI.getCocktail(Integer.toString(cocktailId))));
+            CocktailRecipePayload cocktailToConvert = converter.convertJsonNodeToCocktailRecipePayload(mealAPI.getCocktail(Integer.toString(cocktailId)));
+            Cocktail cocktailToAdd = converter.convertIndividualCocktailRecipePayloadToCocktail(cocktailToConvert);
+            formattedCocktailRecipes.add(cocktailToAdd);
         }
-
-        List<Cocktail> formattedCocktailRecipes = converter.convertCocktailRecipePayloadsToCocktails(cocktailRecipes);
 
         if (cocktailRecipes.size() > 0) {
             cocktailCache.put(formattedCocktailIngredients, formattedCocktailRecipes);
